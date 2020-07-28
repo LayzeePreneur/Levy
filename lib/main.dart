@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './widgets/chart.dart';
 
 void main() => runApp(PersonalExpenses());
 
@@ -10,6 +11,7 @@ class PersonalExpenses extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
         accentColor: Colors.amber,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: HomePage(title: 'Personal Expenses'),
     );
@@ -36,6 +38,11 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.add),
             onPressed: () {},
           ),
+        ],
+      ),
+      body: ListView(
+        children: <Widget>[
+          Chart(),
         ],
       ),
     );
