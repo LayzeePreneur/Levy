@@ -8,8 +8,8 @@ class ChartBar extends StatelessWidget {
         Text('\$5'),
         SizedBox(height: 5),
         Container(
-          width: 10,
-          height: 60,
+          width: 12,
+          height: 65,
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: <Widget>[
