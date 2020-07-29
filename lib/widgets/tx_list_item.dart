@@ -21,46 +21,52 @@ class TxListItem extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Container(
-                    width: 60,
-                    height: 60,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    child: Text(
-                      '\$${txItem.price.toString()}',
-                      style: TextStyle(
-                        color: Colors.white,
+              Expanded(
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      width: 60,
+                      height: 60,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).primaryColor,
                       ),
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        txItem.title,
+                      child: Text(
+                        '\$${txItem.price.toString()}',
                         style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
                         ),
                       ),
-                      SizedBox(height: 5),
-                      Text(
-                        txItem.date.toString(),
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.grey[700],
-                          fontWeight: FontWeight.w600,
-                        ),
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            txItem.title,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            txItem.date.toString(),
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.grey[700],
+                              fontWeight: FontWeight.w600,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
               IconButton(
                 icon: Icon(Icons.delete),
