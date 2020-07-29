@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './widgets/chart.dart';
+import './widgets/tx_list_item.dart';
 import './models/transaction.dart';
 
 void main() => runApp(PersonalExpenses());
@@ -28,7 +29,7 @@ class PersonalExpenses extends StatelessWidget {
 class HomeScreen extends StatefulWidget {
   final String title;
 
-  HomeScreen({Key key, this.title});
+  HomeScreen({Key key, this.title}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _HomeScreenState();
@@ -36,24 +37,24 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Transaction> txList = <Transaction>[
-    // Transaction(
-    //   id: DateTime.now().toString(),
-    //   title: 'Test',
-    //   price: 45.65,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: DateTime.now().toString(),
-    //   title: 'Test',
-    //   price: 45.65,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: DateTime.now().toString(),
-    //   title: 'Test',
-    //   price: 45.65,
-    //   date: DateTime.now(),
-    // ),
+    Transaction(
+      id: DateTime.now().toString(),
+      title: 'Test1',
+      price: 45.65,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: DateTime.now().toString(),
+      title: 'Test2',
+      price: 45.65,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: DateTime.now().toString(),
+      title: 'Test',
+      price: 45.65,
+      date: DateTime.now(),
+    ),
   ];
 
   @override
@@ -89,7 +90,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   )
-                : Container(),
+                : Container(
+                    height: 500,
+                    child: ListView.builder(
+                      itemCount: txList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return TxListItem(txList[index]);
+                      },
+                    ),
+                  ),
           ),
         ],
       ),
