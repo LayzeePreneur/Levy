@@ -13,21 +13,21 @@ class PersonalExpenses extends StatelessWidget {
         accentColor: Colors.amber,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(title: 'Personal Expenses'),
+      home: HomeScreen(title: 'Personal Expenses'),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   final String title;
 
-  HomePage({Key key, this.title});
+  HomeScreen({Key key, this.title});
 
   @override
-  State<StatefulWidget> createState() => _HomePageState();
+  State<StatefulWidget> createState() => _HomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
