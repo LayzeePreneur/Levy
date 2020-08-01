@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import './widgets/chart.dart';
-import './widgets/tx_list_item.dart';
+
 import './models/transaction.dart';
+import './widgets/tx_list_item.dart';
+import './widgets/chart.dart';
+import './widgets/add_transaction.dart';
 
 void main() => runApp(PersonalExpenses());
 
@@ -12,7 +14,7 @@ class PersonalExpenses extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
-        accentColor: Colors.amber,
+        accentColor: Colors.blueGrey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: ThemeData.light().textTheme.copyWith(
               headline5: TextStyle(
@@ -36,7 +38,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Transaction> txList = <Transaction>[
+  List<Transaction> _txList = <Transaction>[
     Transaction(
       id: DateTime.now().toString(),
       title: 'Test1',
@@ -57,6 +59,13 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
   ];
 
+  void startAddTransaction() {
+    showModalBottomSheet(
+      context: context,
+      builder: (_) => AddTransaction(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
-            onPressed: () {},
+            onPressed: startAddTransaction,
           ),
         ],
       ),
@@ -73,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: <Widget>[
           Chart(),
           Container(
-            child: txList.isEmpty
+            child: _txList.isEmpty
                 ? Container(
                     alignment: Alignment.center,
                     child: Column(
@@ -93,14 +102,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 : Container(
                     height: 500,
                     child: ListView.builder(
-                      itemCount: txList.length,
+                      itemCount: _txList.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return TxListItem(txList[index]);
+                        return TxListItem(_txList[index]);
                       },
                     ),
                   ),
           ),
         ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: startAddTransaction,
       ),
     );
   }

@@ -71,7 +71,7 @@ class TxListItem extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.delete),
                 iconSize: 30,
-                color: Theme.of(context).errorColor,
+                color: Theme.of(context).accentColor,
                 onPressed: () {},
               ),
             ],
