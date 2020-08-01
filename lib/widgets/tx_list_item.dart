@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 import '../models/transaction.dart';
 
 class TxListItem extends StatelessWidget {
@@ -54,7 +56,7 @@ class TxListItem extends StatelessWidget {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            txItem.date.toString(),
+                            DateFormat.yMMMEd().format(txItem.date),
                             style: TextStyle(
                               fontSize: 15,
                               color: Colors.grey[700],
