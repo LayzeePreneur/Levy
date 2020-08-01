@@ -3,11 +3,18 @@ import 'package:flutter/material.dart';
 import '../global.dart';
 
 class AddTransaction extends StatefulWidget {
+  final Function handler;
+
+  AddTransaction(this.handler);
+
   @override
   _AddTransactionState createState() => _AddTransactionState();
 }
 
 class _AddTransactionState extends State<AddTransaction> {
+  var titleController = TextEditingController();
+  var amountController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,13 +23,13 @@ class _AddTransactionState extends State<AddTransaction> {
         children: <Widget>[
           TextField(
             decoration: addTxField('Title'),
-            // controller: TextEditingController(),
+            controller: titleController,
           ),
           SizedBox(height: 15),
           TextField(
             decoration: addTxField('Amount'),
             keyboardType: TextInputType.number,
-            // controller: TextEditingController(),
+            controller: amountController,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,7 +70,10 @@ class _AddTransactionState extends State<AddTransaction> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
               ),
-              onPressed: () {},
+              onPressed: () => widget.handler(
+                titleController.text,
+                double.parse(amountController.text),
+              ),
             ),
           ),
         ],

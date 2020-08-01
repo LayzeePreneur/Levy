@@ -35,7 +35,7 @@ class TxListItem extends StatelessWidget {
                         color: Theme.of(context).primaryColor,
                       ),
                       child: Text(
-                        '\$${txItem.price.toString()}',
+                        '\$${txItem.amount.toString()}',
                         style: TextStyle(
                           color: Colors.white,
                         ),

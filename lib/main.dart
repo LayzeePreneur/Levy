@@ -42,27 +42,38 @@ class _HomeScreenState extends State<HomeScreen> {
     Transaction(
       id: DateTime.now().toString(),
       title: 'Test1',
-      price: 45.65,
+      amount: 45.65,
       date: DateTime.now(),
     ),
     Transaction(
       id: DateTime.now().toString(),
       title: 'Test2',
-      price: 45.65,
+      amount: 45.65,
       date: DateTime.now(),
     ),
     Transaction(
       id: DateTime.now().toString(),
       title: 'Test',
-      price: 45.65,
+      amount: 45.65,
       date: DateTime.now(),
     ),
   ];
 
+  void _addNewTx(String title, double amount) {
+    Transaction tx = Transaction(
+      id: DateTime.now().toString(),
+      title: title,
+      amount: amount,
+      date: DateTime.now(),
+    );
+
+    setState(() => _txList.add(tx));
+  }
+
   void startAddTransaction() {
     showModalBottomSheet(
       context: context,
-      builder: (_) => AddTransaction(),
+      builder: (_) => AddTransaction(_addNewTx),
     );
   }
 
