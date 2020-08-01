@@ -17,6 +17,16 @@ class _AddTransactionState extends State<AddTransaction> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime _selectedDate;
+    void _startDatePicker() {
+      showDatePicker(
+        context: context,
+        firstDate: DateTime(1970),
+        lastDate: DateTime.now(),
+        initialDate: DateTime.now(),
+      ).then((date) => _selectedDate = date);
+    }
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
       child: Column(
@@ -53,7 +63,7 @@ class _AddTransactionState extends State<AddTransaction> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
-                onPressed: () {},
+                onPressed: _startDatePicker,
               ),
             ],
           ),
@@ -73,6 +83,7 @@ class _AddTransactionState extends State<AddTransaction> {
               onPressed: () => widget.handler(
                 titleController.text,
                 double.parse(amountController.text),
+                _selectedDate,
               ),
             ),
           ),

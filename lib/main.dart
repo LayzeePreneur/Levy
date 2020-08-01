@@ -59,12 +59,12 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
   ];
 
-  void _addNewTx(String title, double amount) {
+  void _addNewTx(String title, double amount, DateTime date) {
     Transaction tx = Transaction(
       id: DateTime.now().toString(),
       title: title,
       amount: amount,
-      date: DateTime.now(),
+      date: date,
     );
 
     setState(() => _txList.add(tx));
@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   )
                 : Container(
-                    height: 500,
+                    height: 390,
                     child: ListView.builder(
                       itemCount: _txList.length,
                       itemBuilder: (BuildContext context, int index) {
