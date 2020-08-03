@@ -5,8 +5,9 @@ import '../models/transaction.dart';
 
 class TxListItem extends StatelessWidget {
   final Transaction txItem;
+  final Function handler;
 
-  const TxListItem(this.txItem);
+  const TxListItem(this.txItem, this.handler);
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +79,7 @@ class TxListItem extends StatelessWidget {
                 icon: Icon(Icons.delete),
                 iconSize: 30,
                 color: Theme.of(context).accentColor,
-                onPressed: () {},
+                onPressed: () => handler(txItem.id),
               ),
             ],
           ),

@@ -39,18 +39,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Transaction> _txList = <Transaction>[
-    Transaction(
-      id: DateTime.now().toString(),
-      title: 'Test1',
-      amount: 45.65,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: DateTime.now().toString(),
-      title: 'Test2',
-      amount: 45.65,
-      date: DateTime.now(),
-    ),
+    // Transaction(
+    //   id: DateTime.now().toString(),
+    //   title: 'Test1',
+    //   amount: 45.65,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: DateTime.now().toString(),
+    //   title: 'Test2',
+    //   amount: 45.65,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   void _addNewTx(String title, double amount, DateTime date) {
@@ -69,6 +69,15 @@ class _HomeScreenState extends State<HomeScreen> {
       context: context,
       builder: (_) => AddTransaction(_addNewTx),
     );
+  }
+
+  void _deleteTransaction(String id) {
+    for (int i = 0; i < _txList.length; i++) {
+      if (_txList[i].id == id) {
+        setState(() => _txList.removeAt(i));
+        break;
+      }
+    }
   }
 
   @override
@@ -109,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: ListView.builder(
                       itemCount: _txList.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return TxListItem(_txList[index]);
+                        return TxListItem(_txList[index], _deleteTransaction);
                       },
                     ),
                   ),
