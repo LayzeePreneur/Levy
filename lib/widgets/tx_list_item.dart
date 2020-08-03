@@ -27,17 +27,21 @@ class TxListItem extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Container(
-                      width: 60,
-                      height: 60,
+                      width: 68,
+                      height: 68,
+                      padding: EdgeInsets.all(5),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Theme.of(context).primaryColor,
                       ),
-                      child: Text(
-                        '\$${txItem.amount.toString()}',
-                        style: TextStyle(
-                          color: Colors.white,
+                      child: FittedBox(
+                        child: Text(
+                          '\$${txItem.amount.toString()}',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),

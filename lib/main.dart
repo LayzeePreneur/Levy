@@ -51,12 +51,6 @@ class _HomeScreenState extends State<HomeScreen> {
       amount: 45.65,
       date: DateTime.now(),
     ),
-    Transaction(
-      id: DateTime.now().toString(),
-      title: 'Test',
-      amount: 45.65,
-      date: DateTime.now(),
-    ),
   ];
 
   void _addNewTx(String title, double amount, DateTime date) {
