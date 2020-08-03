@@ -17,6 +17,22 @@ class _AddTransactionState extends State<AddTransaction> {
   var amountController = TextEditingController();
   DateTime _selectedDate;
 
+  void _addTx() {
+    var _enteredText = titleController.text;
+    var _enteredAmount = double.parse(amountController.text);
+
+    if (_enteredText.isEmpty ||
+        _enteredAmount.isNaN ||
+        _enteredAmount <= 0 ||
+        _selectedDate == null) {
+      return;
+    }
+
+    widget.handler(_enteredText, _enteredAmount, _selectedDate);
+
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     void _startDatePicker() {
@@ -35,12 +51,14 @@ class _AddTransactionState extends State<AddTransaction> {
           TextField(
             decoration: addTxField('Title'),
             controller: titleController,
+            onSubmitted: (_) => _addTx(),
           ),
           SizedBox(height: 15),
           TextField(
             decoration: addTxField('Amount'),
             keyboardType: TextInputType.number,
             controller: amountController,
+            onSubmitted: (_) => _addTx(),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,11 +101,7 @@ class _AddTransactionState extends State<AddTransaction> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
               ),
-              onPressed: () => widget.handler(
-                titleController.text,
-                double.parse(amountController.text),
-                _selectedDate,
-              ),
+              onPressed: _addTx,
             ),
           ),
         ],
