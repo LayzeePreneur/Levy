@@ -72,12 +72,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _deleteTransaction(String id) {
-    for (int i = 0; i < _txList.length; i++) {
-      if (_txList[i].id == id) {
-        setState(() => _txList.removeAt(i));
-        break;
-      }
-    }
+    setState(() => _txList.removeWhere((tx) {
+      return tx.id == id;
+    }));
   }
 
   @override
