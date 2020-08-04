@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() => _txList.add(tx));
   }
 
-  void startAddTransaction() {
+  void _startAddTransaction() {
     showModalBottomSheet(
       context: context,
       builder: (_) => AddTransaction(_addNewTx),
@@ -73,26 +73,39 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _deleteTransaction(String id) {
     setState(() => _txList.removeWhere((tx) {
-      return tx.id == id;
-    }));
+          return tx.id == id;
+        }));
   }
 
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context);
+    var appBar = AppBar(
+      title: Text(widget.title),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: _startAddTransaction,
+        ),
+      ],
+    );
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: startAddTransaction,
-          ),
-        ],
-      ),
+      appBar: appBar,
       body: ListView(
         children: <Widget>[
-          Chart(),
           Container(
+            height: (mediaQuery.size.height -
+                    appBar.preferredSize.height -
+                    mediaQuery.padding.top) *
+                0.3,
+            child: Chart(),
+          ),
+          Container(
+            height: (mediaQuery.size.height -
+                    mediaQuery.padding.top -
+                    appBar.preferredSize.height) *
+                0.7,
             child: _txList.isEmpty
                 ? Container(
                     alignment: Alignment.center,
@@ -111,7 +124,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   )
                 : Container(
-                    height: 390,
                     child: ListView.builder(
                       itemCount: _txList.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -125,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: startAddTransaction,
+        onPressed: _startAddTransaction,
       ),
     );
   }
