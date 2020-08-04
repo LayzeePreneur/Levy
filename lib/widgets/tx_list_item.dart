@@ -38,7 +38,7 @@ class TxListItem extends StatelessWidget {
                       ),
                       child: FittedBox(
                         child: Text(
-                          '\$${txItem.amount.toString()}',
+                          '\$${txItem.amount.toStringAsFixed(2)}',
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.white,
