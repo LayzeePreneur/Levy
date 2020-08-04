@@ -39,18 +39,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Transaction> _txList = <Transaction>[
-    // Transaction(
-    //   id: DateTime.now().toString(),
-    //   title: 'Test1',
-    //   amount: 45.65,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: DateTime.now().toString(),
-    //   title: 'Test2',
-    //   amount: 45.65,
-    //   date: DateTime.now(),
-    // ),
+    Transaction(
+      id: DateTime.now().toString(),
+      title: 'Test1',
+      amount: 45.65,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: DateTime.now().toString(),
+      title: 'Test2',
+      amount: 45.65,
+      date: DateTime.now(),
+    ),
   ];
 
   void _addNewTx(String title, double amount, DateTime date) {
@@ -72,9 +72,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _deleteTransaction(String id) {
-    setState(() => _txList.removeWhere((tx) {
-          return tx.id == id;
-        }));
+    setState(
+      () => _txList.removeWhere((tx) {
+        return tx.id == id;
+      }),
+    );
   }
 
   @override
@@ -99,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     appBar.preferredSize.height -
                     mediaQuery.padding.top) *
                 0.3,
-            child: Chart(),
+            child: Chart(_txList),
           ),
           Container(
             height: (mediaQuery.size.height -
