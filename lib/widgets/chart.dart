@@ -33,10 +33,14 @@ class Chart extends StatelessWidget {
     }).reversed.toList();
   }
 
-  double get _sevenDaysAmount {
-    return _recentTransaction.fold(0, (prev, elem) {
-      return prev + elem.amount;
+  double get _highestSpending {
+    double amount = 0;
+
+    _recentTransaction.forEach((Transaction tx) {
+      if (tx.amount > amount) amount = tx.amount;
     });
+
+    return amount;
   }
 
   @override
@@ -49,7 +53,7 @@ class Chart extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: List.generate(7, (index) {
-              return ChartBar(_groupedTransaction[index], _sevenDaysAmount);
+              return ChartBar(_groupedTransaction[index], _highestSpending);
             }),
           ),
         ),

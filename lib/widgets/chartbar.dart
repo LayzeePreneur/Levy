@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class ChartBar extends StatelessWidget {
   final Map<String, Object> _txDetails;
-  final double _totalSpending;
+  final double _highestSpending;
 
-  ChartBar(this._txDetails, this._totalSpending);
+  ChartBar(this._txDetails, this._highestSpending);
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +26,8 @@ class ChartBar extends StatelessWidget {
                 ),
               ),
               FractionallySizedBox(
-                heightFactor: _totalSpending > 0
-                    ? double.parse(_txDetails['amount']) / _totalSpending
+                heightFactor: _highestSpending > 0
+                    ? double.parse(_txDetails['amount']) / _highestSpending
                     : 0,
                 child: Container(
                   decoration: BoxDecoration(
