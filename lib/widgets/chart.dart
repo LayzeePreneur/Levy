@@ -27,10 +27,10 @@ class Chart extends StatelessWidget {
       });
 
       return {
-        'amount': _amount,
+        'amount': _amount.toStringAsFixed(0),
         'weekDay': DateFormat.E().format(_date).substring(0, 1),
       };
-    }).toList();
+    }).reversed.toList();
   }
 
   double get _sevenDaysAmount {
@@ -49,7 +49,7 @@ class Chart extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: List.generate(7, (index) {
-              return ChartBar();
+              return ChartBar(_groupedTransaction[index], _sevenDaysAmount);
             }),
           ),
         ),

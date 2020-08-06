@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ChartBar extends StatelessWidget {
+  final Map<String, Object> _txDetails;
+  final double _totalSpending;
+
+  ChartBar(this._txDetails, this._totalSpending);
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text('\$5'),
+        Text('\$${_txDetails['amount']}'),
         SizedBox(height: 5),
         Container(
           width: 12,
@@ -21,7 +26,9 @@ class ChartBar extends StatelessWidget {
                 ),
               ),
               FractionallySizedBox(
-                heightFactor: 0.7,
+                heightFactor: _totalSpending > 0
+                    ? double.parse(_txDetails['amount']) / _totalSpending
+                    : 0,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
@@ -33,7 +40,7 @@ class ChartBar extends StatelessWidget {
           ),
         ),
         SizedBox(height: 5),
-        Text('S'),
+        Text(_txDetails['weekDay']),
       ],
     );
   }
