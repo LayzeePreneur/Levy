@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 import '../widgets/chartbar.dart';
 import '../models/transaction.dart';
 
@@ -8,15 +10,33 @@ class Chart extends StatelessWidget {
   Chart(this._txList);
 
   List<Transaction> get _recentTransaction {
-    var _sevenDaysAgo = DateTime.now().subtract(Duration(days: 7));
+    DateTime _sevenDaysAgo = DateTime.now().subtract(Duration(days: 7));
 
     return _txList.where((Transaction tx) {
       return tx.date.isAfter(_sevenDaysAgo);
     }).toList();
   }
 
+  List<Map<String, Object>> get _groupedTransaction {
+    return List.generate(7, (int index) {
+      DateTime _date = DateTime.now().subtract(Duration(days: index));
+      double _amount = 0;
+
+      _recentTransaction.forEach((Transaction tx) {
+        if (_date.day == tx.date.day) _amount += tx.amount;
+      });
+
+      return {
+        'amount': _amount,
+        'weekDay': DateFormat.E().format(_date).substring(0, 1),
+      };
+    }).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
+    print(_groupedTransaction);
+    print('====');
     return Container(
       width: double.infinity,
       child: Card(
