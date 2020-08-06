@@ -39,18 +39,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Transaction> _txList = <Transaction>[
-    Transaction(
-      id: DateTime.now().toString(),
-      title: 'Test1',
-      amount: 45.65,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: DateTime.now().toString(),
-      title: 'Test2',
-      amount: 45.65,
-      date: DateTime.now(),
-    ),
+    // Transaction(
+    //   id: DateTime.now().toString(),
+    //   title: 'Test1',
+    //   amount: 45.65,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: DateTime.now().toString(),
+    //   title: 'Test2',
+    //   amount: 45.65,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   void _addNewTx(String title, double amount, DateTime date) {

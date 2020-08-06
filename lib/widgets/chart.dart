@@ -33,10 +33,14 @@ class Chart extends StatelessWidget {
     }).toList();
   }
 
+  double get _sevenDaysAmount {
+    return _recentTransaction.fold(0, (prev, elem) {
+      return prev + elem.amount;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(_groupedTransaction);
-    print('====');
     return Container(
       width: double.infinity,
       child: Card(
