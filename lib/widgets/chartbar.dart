@@ -8,40 +8,48 @@ class ChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Text('\$${_txDetails['amount']}'),
-        SizedBox(height: 5),
-        Container(
-          width: 12,
-          height: 60,
-          child: Stack(
-            alignment: Alignment.bottomCenter,
-            children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  border: Border.all(color: Colors.grey[400]),
-                  color: Colors.grey[200],
-                ),
-              ),
-              FractionallySizedBox(
-                heightFactor: _highestSpending > 0
-                    ? double.parse(_txDetails['amount']) / _highestSpending
-                    : 0,
-                child: Container(
+    return LayoutBuilder(builder: (context, constraints) {
+      return Column(
+        children: <Widget>[
+          Container(
+            height: constraints.maxHeight * 0.15,
+            child: FittedBox(child: Text('\$${_txDetails['amount']}')),
+          ),
+          SizedBox(height: constraints.maxHeight * 0.05),
+          Container(
+            width: 12,
+            height: constraints.maxHeight * 0.6,
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              children: <Widget>[
+                Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Theme.of(context).primaryColor,
+                    border: Border.all(color: Colors.grey[400]),
+                    color: Colors.grey[200],
                   ),
                 ),
-              ),
-            ],
+                FractionallySizedBox(
+                  heightFactor: _highestSpending > 0
+                      ? double.parse(_txDetails['amount']) / _highestSpending
+                      : 0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        SizedBox(height: 5),
-        Text(_txDetails['weekDay']),
-      ],
-    );
+          SizedBox(height: constraints.maxHeight * 0.05),
+          Container(
+            height: constraints.maxHeight * 0.15,
+            child: Text(_txDetails['weekDay']),
+          ),
+        ],
+      );
+    });
   }
 }

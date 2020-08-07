@@ -53,7 +53,9 @@ class Chart extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: List.generate(7, (index) {
-              return ChartBar(_groupedTransaction[index], _highestSpending);
+              return Expanded(
+                child: ChartBar(_groupedTransaction[index], _highestSpending),
+              );
             }),
           ),
         ),
