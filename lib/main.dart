@@ -13,7 +13,7 @@ class PersonalExpenses extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.indigo,
         accentColor: Colors.blueGrey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: ThemeData.light().textTheme.copyWith(
