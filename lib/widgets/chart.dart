@@ -34,13 +34,15 @@ class Chart extends StatelessWidget {
   }
 
   double get _highestSpending {
-    double amount = 0;
+    double _amount = 0;
 
-    _recentTransaction.forEach((Transaction tx) {
-      if (tx.amount > amount) amount = tx.amount;
+    _groupedTransaction.forEach((tx) {
+      if (double.parse(tx['amount']) > _amount) {
+        _amount = double.parse(tx['amount']);
+      }
     });
 
-    return amount;
+    return _amount;
   }
 
   @override
