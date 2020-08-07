@@ -109,22 +109,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     appBar.preferredSize.height) *
                 0.7,
             child: _txList.isEmpty
-                ? Container(
-                    alignment: Alignment.center,
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          'No Transaction Added Yet!',
-                          style: Theme.of(context).textTheme.headline5,
-                        ),
-                        SizedBox(height: 15),
-                        Image.asset(
-                          'assets/images/waiting.png',
-                          height: 250,
-                        ),
-                      ],
-                    ),
-                  )
+                ? LayoutBuilder(builder: (context, constraints) {
+                    return Container(
+                      alignment: Alignment.center,
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            'No Transaction Added Yet!',
+                            style: Theme.of(context).textTheme.headline5,
+                          ),
+                          SizedBox(height: 15),
+                          Image.asset(
+                            'assets/images/waiting.png',
+                            height: constraints.maxHeight * 0.7,
+                          ),
+                        ],
+                      ),
+                    );
+                  })
                 : Container(
                     child: ListView.builder(
                       itemCount: _txList.length,
