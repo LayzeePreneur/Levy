@@ -11,6 +11,8 @@ class TxListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context);
+
     return Container(
       width: double.infinity,
       child: Card(
@@ -75,12 +77,19 @@ class TxListItem extends StatelessWidget {
                   ],
                 ),
               ),
-              IconButton(
-                icon: Icon(Icons.delete),
-                iconSize: 30,
-                color: Theme.of(context).accentColor,
-                onPressed: () => handler(txItem.id),
-              ),
+              mediaQuery.size.width > 450
+                  ? FlatButton.icon(
+                      icon: Icon(Icons.delete, size: 30),
+                      label: Text('Delete', style: TextStyle(fontSize: 16)),
+                      textColor: Theme.of(context).accentColor,
+                      onPressed: () => handler(txItem.id),
+                    )
+                  : IconButton(
+                      icon: Icon(Icons.delete),
+                      iconSize: 30,
+                      color: Theme.of(context).accentColor,
+                      onPressed: () => handler(txItem.id),
+                    ),
             ],
           ),
         ),
