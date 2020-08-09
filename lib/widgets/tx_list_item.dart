@@ -16,6 +16,7 @@ class TxListItem extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
         margin: EdgeInsets.symmetric(
           vertical: 5,
           horizontal: 10,
