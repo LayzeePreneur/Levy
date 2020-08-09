@@ -210,6 +210,7 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(bottom: 5),
       child: ListView.builder(
         itemCount: _txList.length,
         itemBuilder: (BuildContext context, int index) {
