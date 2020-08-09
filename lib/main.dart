@@ -96,124 +96,125 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     );
 
+    List<Widget> _buildPortrait() {
+      return [
+        Container(
+          height: (mediaQuery.size.height -
+                  appBar.preferredSize.height -
+                  mediaQuery.padding.top) *
+              0.3,
+          child: Chart(_txList),
+        ),
+        Container(
+          height: (mediaQuery.size.height -
+                  mediaQuery.padding.top -
+                  appBar.preferredSize.height) *
+              0.7,
+          child: _txList.isEmpty
+              ? NoTransactionImage()
+              : TransactionList(_txList, _deleteTransaction),
+        ),
+      ];
+    }
+
+    List<Widget> _buildLandscape() {
+      return [
+        Container(
+          height: (mediaQuery.size.height -
+                      appBar.preferredSize.height -
+                      mediaQuery.padding.top) *
+                  0.1 +
+              10,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Show Chart',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              Switch.adaptive(
+                value: _showChart,
+                onChanged: (value) => setState(() => _showChart = value),
+              ),
+            ],
+          ),
+        ),
+        _showChart
+            ? Container(
+                height: (mediaQuery.size.height -
+                        appBar.preferredSize.height -
+                        mediaQuery.padding.top) *
+                    0.8,
+                child: Chart(_txList),
+              )
+            : Container(
+                height: (mediaQuery.size.height -
+                            mediaQuery.padding.top -
+                            appBar.preferredSize.height) *
+                        0.9 -
+                    10,
+                child: _txList.isEmpty
+                    ? NoTransactionImage()
+                    : TransactionList(_txList, _deleteTransaction),
+              ),
+      ];
+    }
+
     return Scaffold(
       appBar: appBar,
       body: ListView(
         children: <Widget>[
-          if (isLandscape)
-            Container(
-              height: (mediaQuery.size.height -
-                          appBar.preferredSize.height -
-                          mediaQuery.padding.top) *
-                      0.1 +
-                  10,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Show Chart',
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  Switch.adaptive(
-                    value: _showChart,
-                    onChanged: (value) => setState(() => _showChart = value),
-                  ),
-                ],
-              ),
-            ),
-          if (!isLandscape)
-            Container(
-              height: (mediaQuery.size.height -
-                      appBar.preferredSize.height -
-                      mediaQuery.padding.top) *
-                  0.3,
-              child: Chart(_txList),
-            ),
-          if (!isLandscape)
-            Container(
-              height: (mediaQuery.size.height -
-                      mediaQuery.padding.top -
-                      appBar.preferredSize.height) *
-                  0.7,
-              child: _txList.isEmpty
-                  ? LayoutBuilder(builder: (context, constraints) {
-                      return Container(
-                        alignment: Alignment.center,
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              'No Transaction Added Yet!',
-                              style: Theme.of(context).textTheme.headline5,
-                            ),
-                            SizedBox(height: 15),
-                            Image.asset(
-                              'assets/images/waiting.png',
-                              height: constraints.maxHeight * 0.7,
-                            ),
-                          ],
-                        ),
-                      );
-                    })
-                  : Container(
-                      child: ListView.builder(
-                        itemCount: _txList.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return TxListItem(_txList[index], _deleteTransaction);
-                        },
-                      ),
-                    ),
-            ),
-          if (isLandscape)
-            _showChart
-                ? Container(
-                    height: (mediaQuery.size.height -
-                            appBar.preferredSize.height -
-                            mediaQuery.padding.top) *
-                        0.8,
-                    child: Chart(_txList),
-                  )
-                : Container(
-                    height: (mediaQuery.size.height -
-                                mediaQuery.padding.top -
-                                appBar.preferredSize.height) *
-                            0.9 -
-                        10,
-                    child: _txList.isEmpty
-                        ? LayoutBuilder(builder: (context, constraints) {
-                            return Container(
-                              alignment: Alignment.center,
-                              child: Column(
-                                children: <Widget>[
-                                  Text(
-                                    'No Transaction Added Yet!',
-                                    style:
-                                        Theme.of(context).textTheme.headline5,
-                                  ),
-                                  SizedBox(height: 15),
-                                  Image.asset(
-                                    'assets/images/waiting.png',
-                                    height: constraints.maxHeight * 0.7,
-                                  ),
-                                ],
-                              ),
-                            );
-                          })
-                        : Container(
-                            child: ListView.builder(
-                              itemCount: _txList.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return TxListItem(
-                                    _txList[index], _deleteTransaction);
-                              },
-                            ),
-                          ),
-                  ),
+          if (!isLandscape) ..._buildPortrait(),
+          if (isLandscape) ..._buildLandscape(),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: _startAddTransaction,
+      ),
+    );
+  }
+}
+
+class NoTransactionImage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(builder: (context, constraints) {
+      return Container(
+        alignment: Alignment.center,
+        child: Column(
+          children: <Widget>[
+            Text(
+              'No Transaction Added Yet!',
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            SizedBox(height: 15),
+            Image.asset(
+              'assets/images/waiting.png',
+              height: constraints.maxHeight * 0.7,
+            ),
+          ],
+        ),
+      );
+    });
+  }
+}
+
+class TransactionList extends StatelessWidget {
+  final List<Transaction> _txList;
+  final Function _deleteTransaction;
+
+  TransactionList(this._txList, this._deleteTransaction);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: ListView.builder(
+        itemCount: _txList.length,
+        itemBuilder: (BuildContext context, int index) {
+          return TxListItem(_txList[index], _deleteTransaction);
+        },
       ),
     );
   }
