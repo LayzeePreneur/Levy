@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../models/transaction.dart';
+import '../models/expense.dart';
 
 class TxListItem extends StatelessWidget {
-  final Transaction txItem;
+  final Expense txItem;
   final Function handler;
 
   const TxListItem(this.txItem, this.handler);

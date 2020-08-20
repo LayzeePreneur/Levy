@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../widgets/chartbar.dart';
-import '../models/transaction.dart';
+import '../models/expense.dart';
 
 class Chart extends StatelessWidget {
-  final List<Transaction> _txList;
+  final List<Expense> _txList;
 
   Chart(this._txList);
 
-  List<Transaction> get _recentTransaction {
+  List<Expense> get _recentTransaction {
     DateTime _sevenDaysAgo = DateTime.now().subtract(Duration(days: 7));
 
-    return _txList.where((Transaction tx) {
+    return _txList.where((Expense tx) {
       return tx.date.isAfter(_sevenDaysAgo);
     }).toList();
   }
@@ -22,7 +22,7 @@ class Chart extends StatelessWidget {
       DateTime _date = DateTime.now().subtract(Duration(days: index));
       double _amount = 0;
 
-      _recentTransaction.forEach((Transaction tx) {
+      _recentTransaction.forEach((Expense tx) {
         if (_date.day == tx.date.day) _amount += tx.amount;
       });
 

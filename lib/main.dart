@@ -1,6 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
-import './models/transaction.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
+
+import 'models/expense.dart';
 import './widgets/tx_list_item.dart';
 import './widgets/chart.dart';
 import './widgets/add_transaction.dart';
@@ -39,22 +44,56 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Transaction> _txList = <Transaction>[];
-
+  List<Expense> _txList = <Expense>[];
   bool _showChart = false;
 
-  void _addNewTx(String title, double amount, DateTime date) {
-    Transaction tx = Transaction(
-      id: DateTime.now().toString(),
-      title: title,
-      amount: amount,
-      date: date,
+  Future<Database> _getDatabase() async {
+    Database database = await openDatabase(
+      join(await getDatabasesPath(), 'expenses.db'),
+      onCreate: (db, version) {
+        return db.execute(
+          'CREATE TABLE expenses (id INTEGER PRIMARY KEY AUTOINCREMENT, '
+          'title TEXT, amount REAL, date TEXT)',
+        );
+      },
+      version: 1,
     );
 
-    setState(() => _txList.add(tx));
+    return database;
   }
 
-  void _startAddTransaction() {
+  Future<List<Expense>> _getTransactions() async {
+    Database db = await _getDatabase();
+    List<Map<String, dynamic>> transactions = await db.rawQuery(
+      'SELECT * FROM expenses',
+    );
+
+    return List.generate(transactions.length, (index) {
+      return Expense(
+        id: transactions[index]['id'],
+        title: transactions[index]['title'],
+        amount: transactions[index]['amount'],
+        date: DateTime.parse(transactions[index]['date']),
+      );
+    }).toList();
+  }
+
+  Future<void> _addNewTx(String title, double amount, DateTime date) async {
+    Database db = await _getDatabase();
+
+    await db.transaction((txn) async {
+      await txn.rawInsert(
+        'INSERT INTO expenses (title, amount, date) VALUES (?, ?, ?)',
+        [title, amount, date.toString()],
+      );
+    });
+
+    List<Expense> _getTxList = await _getTransactions();
+
+    setState(() => _txList = _getTxList);
+  }
+
+  void _startAddTransaction(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (_) => AddTransaction(_addNewTx),
@@ -79,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.add),
-          onPressed: _startAddTransaction,
+          onPressed: () => _startAddTransaction(context),
         ),
       ],
     );
@@ -159,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: _startAddTransaction,
+        onPressed: () => _startAddTransaction(context),
       ),
     );
   }
@@ -190,7 +229,7 @@ class NoTransactionImage extends StatelessWidget {
 }
 
 class TransactionList extends StatelessWidget {
-  final List<Transaction> _txList;
+  final List<Expense> _txList;
   final Function _deleteTransaction;
 
   TransactionList(this._txList, this._deleteTransaction);
