@@ -25,7 +25,7 @@ class ChartBar extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    border: Border.all(color: Colors.grey[400]),
+                    border: Border.all(color: Colors.grey[350]),
                     color: Colors.grey[200],
                   ),
                 ),
@@ -46,7 +46,7 @@ class ChartBar extends StatelessWidget {
           SizedBox(height: constraints.maxHeight * 0.05),
           Container(
             height: constraints.maxHeight * 0.15,
-            child: Text(_txDetails['weekDay']),
+            child: FittedBox(child: Text(_txDetails['weekDay'])),
           ),
         ],
       );

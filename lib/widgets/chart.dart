@@ -62,7 +62,7 @@ class Chart extends StatelessWidget {
           ),
         ),
         margin: const EdgeInsets.all(20),
-        elevation: 6,
+        elevation: 1,
       ),
     );
   }

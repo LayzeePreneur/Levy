@@ -16,12 +16,15 @@ class TxListItem extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(45),
+          side: BorderSide(width: 1, color: Colors.grey[300]),
+        ),
         margin: EdgeInsets.symmetric(
           vertical: 5,
           horizontal: 10,
         ),
-        elevation: 3,
+        elevation: 0,
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Row(
