@@ -17,7 +17,7 @@ class TxListItem extends StatelessWidget {
       width: double.infinity,
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(45),
+          borderRadius: BorderRadius.circular(40),
           side: BorderSide(width: 1, color: Colors.grey[300]),
         ),
         margin: EdgeInsets.symmetric(
@@ -26,7 +26,12 @@ class TxListItem extends StatelessWidget {
         ),
         elevation: 0,
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.only(
+            top: 10,
+            bottom: 10,
+            left: 12,
+            right: 10,
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
