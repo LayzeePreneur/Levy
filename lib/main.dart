@@ -38,20 +38,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Transaction> _txList = <Transaction>[
-    // Transaction(
-    //   id: DateTime.now().toString(),
-    //   title: 'Test1',
-    //   amount: 45.65,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: DateTime.now().toString(),
-    //   title: 'Test2',
-    //   amount: 45.65,
-    //   date: DateTime.now(),
-    // ),
-  ];
+  List<Transaction> _txList = <Transaction>[];
 
   bool _showChart = false;
 
@@ -210,8 +197,8 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(bottom: 5),
       child: ListView.builder(
+        padding: EdgeInsets.only(bottom: 5),
         itemCount: _txList.length,
         itemBuilder: (BuildContext context, int index) {
           return TxListItem(_txList[index], _deleteTransaction);
