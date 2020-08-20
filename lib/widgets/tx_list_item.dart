@@ -34,8 +34,8 @@ class TxListItem extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Container(
-                      width: 68,
-                      height: 68,
+                      width: 62,
+                      height: 62,
                       padding: EdgeInsets.all(5),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -83,14 +83,14 @@ class TxListItem extends StatelessWidget {
               ),
               mediaQuery.size.width > 450
                   ? FlatButton.icon(
-                      icon: Icon(Icons.delete, size: 30),
+                      icon: Icon(Icons.delete, size: 28),
                       label: Text('Delete', style: TextStyle(fontSize: 16)),
                       textColor: Theme.of(context).accentColor,
                       onPressed: () => handler(txItem.id),
                     )
                   : IconButton(
                       icon: Icon(Icons.delete),
-                      iconSize: 30,
+                      iconSize: 28,
                       color: Theme.of(context).accentColor,
                       onPressed: () => handler(txItem.id),
                     ),

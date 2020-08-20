@@ -22,9 +22,22 @@ class PersonalExpenses extends StatelessWidget {
         primarySwatch: Colors.indigo,
         accentColor: Colors.blueGrey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        fontFamily: 'Quicksand',
+        appBarTheme: ThemeData.light().appBarTheme.copyWith(
+              textTheme: ThemeData.light().textTheme.copyWith(
+                    headline6: TextStyle(
+                      fontFamily: 'OpenSans',
+                      fontSize: 20,
+                    ),
+                  ),
+            ),
         textTheme: ThemeData.light().textTheme.copyWith(
               headline5: TextStyle(
-                fontSize: 23,
+                fontSize: 21,
+                fontWeight: FontWeight.w600,
+              ),
+              headline6: TextStyle(
+                fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),
             ),
