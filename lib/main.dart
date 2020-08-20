@@ -78,6 +78,12 @@ class _HomeScreenState extends State<HomeScreen> {
     }).toList();
   }
 
+  Future<void> _loadTransactions() async {
+    List<Expense> _getTxList = await _getTransactions();
+
+    setState(() => _txList = _getTxList);
+  }
+
   Future<void> _addNewTx(String title, double amount, DateTime date) async {
     Database db = await _getDatabase();
 
@@ -88,9 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     });
 
-    List<Expense> _getTxList = await _getTransactions();
-
-    setState(() => _txList = _getTxList);
+    _loadTransactions();
   }
 
   void _startAddTransaction(BuildContext context) {
@@ -100,12 +104,17 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _deleteTransaction(String id) {
-    setState(
-      () => _txList.removeWhere((tx) {
-        return tx.id == id;
-      }),
-    );
+  Future<void> _deleteTransaction(int id) async {
+    Database db = await _getDatabase();
+    db.rawDelete('DELETE FROM expenses WHERE id = ?', [id]);
+
+    _loadTransactions();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTransactions();
   }
 
   @override
