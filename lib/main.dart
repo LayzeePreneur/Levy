@@ -180,7 +180,7 @@ class NoTransactionImage extends StatelessWidget {
             SizedBox(height: 15),
             Image.asset(
               'assets/images/waiting.png',
-              height: constraints.maxHeight * 0.7,
+              height: constraints.maxHeight * 0.6,
             ),
           ],
         ),
