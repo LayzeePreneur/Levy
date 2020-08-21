@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 
 InputDecoration addTxField(String fieldHintText) {
   return InputDecoration(
-    contentPadding: EdgeInsets.symmetric(
-      vertical: 18,
-      horizontal: 15,
-    ),
+    contentPadding: EdgeInsets.all(16),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(25),
       borderSide: BorderSide(width: 0.9),
