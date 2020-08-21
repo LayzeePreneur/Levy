@@ -71,7 +71,7 @@ class _AddTransactionState extends State<AddTransaction> {
               children: <Widget>[
                 Text(
                   _selectedDate == null
-                      ? 'No Date Choosen'
+                      ? 'No Date Chosen'
                       : 'Picked Date: ${DateFormat('dd/MM/y').format(_selectedDate)}',
                   style: TextStyle(
                     fontSize: 17,

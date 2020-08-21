@@ -210,8 +210,9 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: appBar,
-      body: ListView(
+      body: Column(
         children: <Widget>[
           if (!isLandscape) ..._buildPortrait(),
           if (isLandscape) ..._buildLandscape(),
