@@ -38,11 +38,11 @@ class PersonalExpenses extends StatelessWidget {
                 fontWeight: FontWeight.w900,
               ),
               headline5: TextStyle(
-                fontSize: 19,
+                fontSize: 18,
                 fontWeight: FontWeight.w700,
               ),
               headline6: TextStyle(
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -184,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
               Text(
                 'Show Chart',
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.headline5,
               ),
               Switch.adaptive(
                 value: _showChart,

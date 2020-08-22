@@ -21,7 +21,7 @@ InputDecoration addTxField(String fieldHintText) {
     hintText: fieldHintText,
     hintStyle: TextStyle(
       fontFamily: 'Quicksand',
-      color: Colors.black54,
+      color: Colors.black38,
       fontSize: 16,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.9,

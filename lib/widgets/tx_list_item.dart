@@ -65,7 +65,7 @@ class TxListItem extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             txItem.title,
-                            style: Theme.of(context).textTheme.headline6,
+                            style: Theme.of(context).textTheme.headline5,
                             overflow: TextOverflow.ellipsis,
                           ),
                           SizedBox(height: 5),
@@ -74,8 +74,8 @@ class TxListItem extends StatelessWidget {
                             style: TextStyle(
                               fontFamily: 'Quicksand',
                               fontSize: 15,
-                              color: Colors.grey[700],
-                              fontWeight: FontWeight.w600,
+                              color: Colors.grey[500],
+                              fontWeight: FontWeight.w900,
                             ),
                             overflow: TextOverflow.ellipsis,
                           ),

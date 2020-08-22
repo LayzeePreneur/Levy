@@ -79,7 +79,7 @@ class _AddTransactionState extends State<AddTransaction> {
                   child: Text(
                     'Choose Date',
                     style: TextStyle(
-                      fontSize: 17,
+                      fontSize: 16,
                       fontWeight: FontWeight.w900,
                       fontFamily: 'Quicksand',
                       color: Theme.of(context).primaryColor,
