@@ -32,9 +32,14 @@ class PersonalExpenses extends StatelessWidget {
                   ),
             ),
         textTheme: ThemeData.light().textTheme.copyWith(
-              headline5: TextStyle(
+              headline4: TextStyle(
+                color: Colors.grey[800],
                 fontSize: 21,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w900,
+              ),
+              headline5: TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.w700,
               ),
               headline6: TextStyle(
                 fontSize: 18,
@@ -237,7 +242,7 @@ class NoTransactionImage extends StatelessWidget {
           children: <Widget>[
             Text(
               'No Transaction Added Yet!',
-              style: Theme.of(context).textTheme.headline5,
+              style: Theme.of(context).textTheme.headline4,
             ),
             SizedBox(height: 15),
             Image.asset(

@@ -51,8 +51,9 @@ class TxListItem extends StatelessWidget {
                         child: Text(
                           '\$${txItem.amount.toStringAsFixed(2)}',
                           style: TextStyle(
-                            fontSize: 16,
                             color: Colors.white,
+                            fontFamily: 'OpenSans',
+                            fontSize: 16,
                           ),
                         ),
                       ),
@@ -64,16 +65,14 @@ class TxListItem extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             txItem.title,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                            ),
+                            style: Theme.of(context).textTheme.headline6,
                             overflow: TextOverflow.ellipsis,
                           ),
                           SizedBox(height: 5),
                           Text(
                             DateFormat.yMMMEd().format(txItem.date),
                             style: TextStyle(
+                              fontFamily: 'Quicksand',
                               fontSize: 15,
                               color: Colors.grey[700],
                               fontWeight: FontWeight.w600,
@@ -89,7 +88,14 @@ class TxListItem extends StatelessWidget {
               mediaQuery.size.width > 450
                   ? FlatButton.icon(
                       icon: Icon(Icons.delete, size: 28),
-                      label: Text('Delete', style: TextStyle(fontSize: 16)),
+                      label: Text(
+                        'Delete',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Quicksand',
+                        ),
+                      ),
                       textColor: Theme.of(context).accentColor,
                       onPressed: () => handler(txItem.id),
                     )

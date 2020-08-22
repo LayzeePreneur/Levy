@@ -73,17 +73,15 @@ class _AddTransactionState extends State<AddTransaction> {
                   _selectedDate == null
                       ? 'No Date Chosen'
                       : 'Picked Date: ${DateFormat('dd/MM/y').format(_selectedDate)}',
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: Theme.of(context).textTheme.headline6,
                 ),
                 FlatButton(
                   child: Text(
                     'Choose Date',
                     style: TextStyle(
                       fontSize: 17,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w900,
+                      fontFamily: 'Quicksand',
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
@@ -99,7 +97,11 @@ class _AddTransactionState extends State<AddTransaction> {
               child: RaisedButton(
                 child: Text(
                   'Add Transaction',
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: 'Quicksand',
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 color: Theme.of(context).primaryColor,
                 textColor: Colors.white,

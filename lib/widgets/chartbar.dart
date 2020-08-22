@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../global.dart';
+
 class ChartBar extends StatelessWidget {
   final Map<String, Object> _txDetails;
   final double _highestSpending;
@@ -19,9 +21,14 @@ class ChartBar extends StatelessWidget {
             child: isLandscape
                 ? Text(
                     '\$${_txDetails['amount']}',
-                    style: TextStyle(fontSize: 17),
+                    style: chartbarFontLandscape(17),
                   )
-                : FittedBox(child: Text('\$${_txDetails['amount']}')),
+                : FittedBox(
+                    child: Text(
+                      '\$${_txDetails['amount']}',
+                      style: chartbarFontPortrait(),
+                    ),
+                  ),
           ),
           SizedBox(height: constraints.maxHeight * 0.05),
           Container(
@@ -55,8 +62,16 @@ class ChartBar extends StatelessWidget {
           Container(
             height: constraints.maxHeight * 0.15,
             child: isLandscape
-                ? Text(_txDetails['weekDay'], style: TextStyle(fontSize: 17))
-                : FittedBox(child: Text(_txDetails['weekDay'])),
+                ? Text(
+                    _txDetails['weekDay'],
+                    style: chartbarFontLandscape(16),
+                  )
+                : FittedBox(
+                    child: Text(
+                      _txDetails['weekDay'],
+                      style: chartbarFontPortrait(),
+                    ),
+                  ),
           ),
         ],
       );
