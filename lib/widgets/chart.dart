@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+
 import 'package:intl/intl.dart';
 
-import '../widgets/chartbar.dart';
 import '../models/expense.dart';
+import 'chartbar.dart';
 
 class Chart extends StatelessWidget {
   final List<Expense> _txList;
 
-  Chart(this._txList);
+  const Chart(this._txList);
 
   List<Expense> get _recentTransaction {
     DateTime _sevenDaysAgo = DateTime.now().subtract(Duration(days: 7));

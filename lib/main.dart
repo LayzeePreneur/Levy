@@ -6,9 +6,10 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'models/expense.dart';
-import './widgets/tx_list_item.dart';
-import './widgets/chart.dart';
-import './widgets/add_transaction.dart';
+import 'widgets/transaction_list.dart';
+import 'widgets/chart.dart';
+import 'widgets/add_transaction.dart';
+import 'widgets/no_transaction_image.dart';
 
 void main() => runApp(PersonalExpenses());
 
@@ -25,7 +26,7 @@ class PersonalExpenses extends StatelessWidget {
         fontFamily: 'Quicksand',
         appBarTheme: ThemeData.light().appBarTheme.copyWith(
               textTheme: ThemeData.light().textTheme.copyWith(
-                    headline6: TextStyle(
+                    headline6: const TextStyle(
                       fontFamily: 'OpenSans',
                       fontSize: 20,
                     ),
@@ -34,14 +35,14 @@ class PersonalExpenses extends StatelessWidget {
         textTheme: ThemeData.light().textTheme.copyWith(
               headline4: TextStyle(
                 color: Colors.grey[800],
-                fontSize: 21,
+                fontSize: 20,
                 fontWeight: FontWeight.w900,
               ),
-              headline5: TextStyle(
+              headline5: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
               ),
-              headline6: TextStyle(
+              headline6: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
@@ -55,7 +56,7 @@ class PersonalExpenses extends StatelessWidget {
 class HomeScreen extends StatefulWidget {
   final String title;
 
-  HomeScreen({Key key, this.title}) : super(key: key);
+  const HomeScreen({Key key, this.title}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _HomeScreenState();
@@ -144,26 +145,24 @@ class _HomeScreenState extends State<HomeScreen> {
       title: Text(widget.title),
       actions: <Widget>[
         IconButton(
-          icon: Icon(Icons.add),
+          icon: const Icon(Icons.add),
           onPressed: () => _startAddTransaction(context),
         ),
       ],
     );
 
+    double _bodySize = mediaQuery.size.height -
+        appBar.preferredSize.height -
+        mediaQuery.padding.top;
+
     List<Widget> _buildPortrait() {
-      return [
+      return <Widget>[
         Container(
-          height: (mediaQuery.size.height -
-                  appBar.preferredSize.height -
-                  mediaQuery.padding.top) *
-              0.3,
+          height: _bodySize * 0.3,
           child: Chart(_txList),
         ),
         Container(
-          height: (mediaQuery.size.height -
-                  mediaQuery.padding.top -
-                  appBar.preferredSize.height) *
-              0.7,
+          height: _bodySize * 0.7,
           child: _txList.isEmpty
               ? NoTransactionImage()
               : TransactionList(_txList, _deleteTransaction),
@@ -172,13 +171,10 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     List<Widget> _buildLandscape() {
-      return [
+      return <Widget>[
         Container(
-          height: (mediaQuery.size.height -
-                      appBar.preferredSize.height -
-                      mediaQuery.padding.top) *
-                  0.1 +
-              10,
+          height: _bodySize * 0.1 + 10,
+          padding: const EdgeInsets.only(top: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -195,18 +191,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         _showChart
             ? Container(
-                height: (mediaQuery.size.height -
-                        appBar.preferredSize.height -
-                        mediaQuery.padding.top) *
-                    0.8,
+                height: _bodySize * 0.8 - 10,
                 child: Chart(_txList),
               )
             : Container(
-                height: (mediaQuery.size.height -
-                            mediaQuery.padding.top -
-                            appBar.preferredSize.height) *
-                        0.9 -
-                    10,
+                height: _bodySize * 0.9 - 10,
                 child: _txList.isEmpty
                     ? NoTransactionImage()
                     : TransactionList(_txList, _deleteTransaction),
@@ -225,52 +214,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () => _startAddTransaction(context),
-      ),
-    );
-  }
-}
-
-class NoTransactionImage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return Container(
-        alignment: Alignment.center,
-        child: Column(
-          children: <Widget>[
-            Text(
-              'No Transaction Added Yet!',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            SizedBox(height: 15),
-            Image.asset(
-              'assets/images/waiting.png',
-              height: constraints.maxHeight * 0.6,
-            ),
-          ],
-        ),
-      );
-    });
-  }
-}
-
-class TransactionList extends StatelessWidget {
-  final List<Expense> _txList;
-  final Function _deleteTransaction;
-
-  TransactionList(this._txList, this._deleteTransaction);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: ListView.builder(
-        padding: EdgeInsets.only(bottom: 5),
-        itemCount: _txList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return TxListItem(_txList[index], _deleteTransaction);
-        },
       ),
     );
   }

@@ -6,7 +6,7 @@ class ChartBar extends StatelessWidget {
   final Map<String, Object> _txDetails;
   final double _highestSpending;
 
-  ChartBar(this._txDetails, this._highestSpending);
+  const ChartBar(this._txDetails, this._highestSpending);
 
   @override
   Widget build(BuildContext context) {

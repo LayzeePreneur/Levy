@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:intl/intl.dart';
 
 import '../models/expense.dart';
@@ -20,7 +21,7 @@ class TxListItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(40),
           side: BorderSide(width: 1, color: Colors.grey[300]),
         ),
-        margin: EdgeInsets.symmetric(
+        margin: const EdgeInsets.symmetric(
           vertical: 5,
           horizontal: 10,
         ),
@@ -41,7 +42,7 @@ class TxListItem extends StatelessWidget {
                     Container(
                       width: 62,
                       height: 62,
-                      padding: EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -50,7 +51,7 @@ class TxListItem extends StatelessWidget {
                       child: FittedBox(
                         child: Text(
                           '\$${txItem.amount.toStringAsFixed(2)}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontFamily: 'OpenSans',
                             fontSize: 16,
@@ -58,7 +59,7 @@ class TxListItem extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,14 +69,14 @@ class TxListItem extends StatelessWidget {
                             style: Theme.of(context).textTheme.headline5,
                             overflow: TextOverflow.ellipsis,
                           ),
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           Text(
                             DateFormat.yMMMEd().format(txItem.date),
                             style: TextStyle(
                               fontFamily: 'Quicksand',
-                              fontSize: 15,
-                              color: Colors.grey[500],
-                              fontWeight: FontWeight.w900,
+                              fontSize: 16,
+                              color: Colors.grey[600],
+                              fontWeight: FontWeight.w700,
                             ),
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -87,10 +88,10 @@ class TxListItem extends StatelessWidget {
               ),
               mediaQuery.size.width > 450
                   ? FlatButton.icon(
-                      icon: Icon(Icons.delete, size: 28),
+                      icon: const Icon(Icons.delete, size: 28),
                       label: Text(
                         'Delete',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Quicksand',
@@ -100,7 +101,7 @@ class TxListItem extends StatelessWidget {
                       onPressed: () => handler(txItem.id),
                     )
                   : IconButton(
-                      icon: Icon(Icons.delete),
+                      icon: const Icon(Icons.delete),
                       iconSize: 28,
                       color: Theme.of(context).accentColor,
                       onPressed: () => handler(txItem.id),

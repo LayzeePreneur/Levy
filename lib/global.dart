@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 InputDecoration addTxField(String fieldHintText) {
   return InputDecoration(
-    contentPadding: EdgeInsets.all(16),
+    contentPadding: const EdgeInsets.all(16),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(25),
-      borderSide: BorderSide(width: 0.9),
+      borderSide: const BorderSide(width: 0.9),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(25),
@@ -18,7 +18,7 @@ InputDecoration addTxField(String fieldHintText) {
     filled: true,
     fillColor: Colors.grey[200],
     hintText: fieldHintText,
-    hintStyle: TextStyle(
+    hintStyle: const TextStyle(
       fontFamily: 'Quicksand',
       color: Colors.black38,
       fontSize: 15,
@@ -29,7 +29,7 @@ InputDecoration addTxField(String fieldHintText) {
 }
 
 TextStyle chartbarFontPortrait() {
-  return TextStyle(
+  return const TextStyle(
     fontFamily: 'Quicksand',
     fontWeight: FontWeight.w700,
     color: Colors.black54,

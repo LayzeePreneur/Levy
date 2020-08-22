@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:intl/intl.dart';
 
 import '../global.dart';
@@ -6,7 +7,7 @@ import '../global.dart';
 class AddTransaction extends StatefulWidget {
   final Function handler;
 
-  AddTransaction(this.handler);
+  const AddTransaction(this.handler);
 
   @override
   _AddTransactionState createState() => _AddTransactionState();
@@ -59,7 +60,7 @@ class _AddTransactionState extends State<AddTransaction> {
               controller: titleController,
               onSubmitted: (_) => _addTx(),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               decoration: addTxField('Amount'),
               keyboardType: TextInputType.number,
@@ -86,6 +87,7 @@ class _AddTransactionState extends State<AddTransaction> {
                       fontWeight: FontWeight.w900,
                       fontFamily: 'Quicksand',
                       color: Theme.of(context).primaryColor,
+                      letterSpacing: 0.4,
                     ),
                   ),
                   shape: RoundedRectangleBorder(
@@ -98,17 +100,21 @@ class _AddTransactionState extends State<AddTransaction> {
             Container(
               alignment: Alignment.centerRight,
               child: RaisedButton(
-                child: Text(
+                child: const Text(
                   'Add Transaction',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontFamily: 'Quicksand',
                     fontWeight: FontWeight.w600,
+                    letterSpacing: 0.5,
                   ),
                 ),
                 color: Theme.of(context).primaryColor,
                 textColor: Colors.white,
-                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                  horizontal: 15,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),

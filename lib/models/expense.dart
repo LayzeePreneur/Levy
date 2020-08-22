@@ -6,7 +6,7 @@ class Expense {
   final double amount;
   final DateTime date;
 
-  Expense({
+  const Expense({
     @required this.id,
     @required this.title,
     @required this.amount,
