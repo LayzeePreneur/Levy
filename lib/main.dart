@@ -138,10 +138,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context);
-    bool isLandscape = mediaQuery.orientation == Orientation.landscape;
+    final MediaQueryData _mediaQuery = MediaQuery.of(context);
+    final bool _isLandscape = _mediaQuery.orientation == Orientation.landscape;
 
-    AppBar appBar = AppBar(
+    AppBar _appBar = AppBar(
       title: Text(widget.title),
       actions: <Widget>[
         IconButton(
@@ -151,9 +151,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     );
 
-    double _bodySize = mediaQuery.size.height -
-        appBar.preferredSize.height -
-        mediaQuery.padding.top;
+    double _bodySize = _mediaQuery.size.height -
+        _appBar.preferredSize.height -
+        _mediaQuery.padding.top;
 
     List<Widget> _buildPortrait() {
       return <Widget>[
@@ -164,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Container(
           height: _bodySize * 0.7,
           child: _txList.isEmpty
-              ? NoTransactionImage(mediaQuery, isLandscape)
+              ? NoTransactionImage(_isLandscape)
               : TransactionList(_txList, _deleteTransaction),
         ),
       ];
@@ -197,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
             : Container(
                 height: _bodySize * 0.9 - 10,
                 child: _txList.isEmpty
-                    ? NoTransactionImage(mediaQuery, isLandscape)
+                    ? NoTransactionImage(_isLandscape)
                     : TransactionList(_txList, _deleteTransaction),
               ),
       ];
@@ -205,11 +205,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       resizeToAvoidBottomPadding: false,
-      appBar: appBar,
+      appBar: _appBar,
       body: Column(
         children: <Widget>[
-          if (!isLandscape) ..._buildPortrait(),
-          if (isLandscape) ..._buildLandscape(),
+          if (!_isLandscape) ..._buildPortrait(),
+          if (_isLandscape) ..._buildLandscape(),
         ],
       ),
     );

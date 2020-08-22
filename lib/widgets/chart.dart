@@ -11,39 +11,39 @@ class Chart extends StatelessWidget {
   const Chart(this._txList);
 
   List<Expense> get _recentTransaction {
-    DateTime _sevenDaysAgo = DateTime.now().subtract(Duration(days: 7));
+    DateTime sevenDaysAgo = DateTime.now().subtract(Duration(days: 7));
 
     return _txList.where((Expense tx) {
-      return tx.date.isAfter(_sevenDaysAgo);
+      return tx.date.isAfter(sevenDaysAgo);
     }).toList();
   }
 
   List<Map<String, Object>> get _groupedTransaction {
     return List.generate(7, (int index) {
-      DateTime _date = DateTime.now().subtract(Duration(days: index));
-      double _amount = 0;
+      DateTime date = DateTime.now().subtract(Duration(days: index));
+      double amount = 0;
 
       _recentTransaction.forEach((Expense tx) {
-        if (_date.day == tx.date.day) _amount += tx.amount;
+        if (date.day == tx.date.day) amount += tx.amount;
       });
 
       return {
-        'amount': _amount.toStringAsFixed(0),
-        'weekDay': DateFormat.E().format(_date).substring(0, 1),
+        'amount': amount.toStringAsFixed(0),
+        'weekDay': DateFormat.E().format(date).substring(0, 1),
       };
     }).reversed.toList();
   }
 
   double get _highestSpending {
-    double _amount = 0;
+    double amount = 0;
 
     _groupedTransaction.forEach((tx) {
-      if (double.parse(tx['amount']) > _amount) {
-        _amount = double.parse(tx['amount']);
+      if (double.parse(tx['amount']) > amount) {
+        amount = double.parse(tx['amount']);
       }
     });
 
-    return _amount;
+    return amount;
   }
 
   @override

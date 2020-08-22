@@ -10,15 +10,15 @@ class ChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context);
-    bool isLandscape = mediaQuery.orientation == Orientation.landscape;
+    final MediaQueryData _mediaQuery = MediaQuery.of(context);
+    final bool _isLandscape = _mediaQuery.orientation == Orientation.landscape;
 
     return LayoutBuilder(builder: (context, constraints) {
       return Column(
         children: <Widget>[
           Container(
             height: constraints.maxHeight * 0.15,
-            child: isLandscape
+            child: _isLandscape
                 ? Text(
                     '\$${_txDetails['amount']}',
                     style: chartbarFontLandscape(17),
@@ -61,7 +61,7 @@ class ChartBar extends StatelessWidget {
           SizedBox(height: constraints.maxHeight * 0.05),
           Container(
             height: constraints.maxHeight * 0.15,
-            child: isLandscape
+            child: _isLandscape
                 ? Text(
                     _txDetails['weekDay'],
                     style: chartbarFontLandscape(16),

@@ -14,13 +14,13 @@ class AddTransaction extends StatefulWidget {
 }
 
 class _AddTransactionState extends State<AddTransaction> {
-  var titleController = TextEditingController();
-  var amountController = TextEditingController();
+  var _titleController = TextEditingController();
+  var _amountController = TextEditingController();
   DateTime _selectedDate;
 
   void _addTx() {
-    var _enteredText = titleController.text;
-    var _enteredAmount = double.parse(amountController.text);
+    var _enteredText = _titleController.text;
+    var _enteredAmount = double.parse(_amountController.text);
 
     if (_enteredText.isEmpty ||
         _enteredAmount.isNaN ||
@@ -57,14 +57,14 @@ class _AddTransactionState extends State<AddTransaction> {
           children: <Widget>[
             TextField(
               decoration: addTxField('Title'),
-              controller: titleController,
+              controller: _titleController,
               onSubmitted: (_) => _addTx(),
             ),
             const SizedBox(height: 20),
             TextField(
               decoration: addTxField('Amount'),
               keyboardType: TextInputType.number,
-              controller: amountController,
+              controller: _amountController,
               onSubmitted: (_) => _addTx(),
             ),
             Row(
