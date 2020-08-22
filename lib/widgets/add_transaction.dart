@@ -69,11 +69,14 @@ class _AddTransactionState extends State<AddTransaction> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(
-                  _selectedDate == null
-                      ? 'No Date Chosen'
-                      : 'Picked Date: ${DateFormat('dd/MM/y').format(_selectedDate)}',
-                  style: Theme.of(context).textTheme.headline6,
+                Expanded(
+                  child: Text(
+                    _selectedDate == null
+                        ? 'No Date Chosen'
+                        : 'Picked Date: ${DateFormat('dd/MM/yy').format(_selectedDate)}',
+                    style: Theme.of(context).textTheme.headline6,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 FlatButton(
                   child: Text(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 InputDecoration addTxField(String fieldHintText) {
   return InputDecoration(
-
     contentPadding: EdgeInsets.all(16),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(25),
@@ -22,9 +21,9 @@ InputDecoration addTxField(String fieldHintText) {
     hintStyle: TextStyle(
       fontFamily: 'Quicksand',
       color: Colors.black38,
-      fontSize: 16,
+      fontSize: 15,
       fontWeight: FontWeight.w600,
-      letterSpacing: 0.9,
+      letterSpacing: 0.8,
     ),
   );
 }

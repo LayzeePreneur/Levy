@@ -62,7 +62,10 @@ class Chart extends StatelessWidget {
           ),
         ),
         margin: const EdgeInsets.only(
-          top: 20, left: 20, right: 20, bottom: 15,
+          top: 20,
+          left: 20,
+          right: 20,
+          bottom: 15,
         ),
         elevation: 1,
       ),
