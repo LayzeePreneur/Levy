@@ -212,11 +212,6 @@ class _HomeScreenState extends State<HomeScreen> {
           if (isLandscape) ..._buildLandscape(),
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () => _startAddTransaction(context),
-      ),
     );
   }
 }
