@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
 class NoTransactionImage extends StatelessWidget {
+  final mediaQuery;
+  final isLandscape;
+
+  const NoTransactionImage(this.mediaQuery, this.isLandscape);
+
   @override
   Widget build(BuildContext context) {
+    double _imgHeight = isLandscape ? 0.7 : 0.6;
+
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
         alignment: Alignment.center,
@@ -15,7 +22,7 @@ class NoTransactionImage extends StatelessWidget {
             const SizedBox(height: 20),
             Image.asset(
               'assets/images/waiting.png',
-              height: constraints.maxHeight * 0.7,
+              height: constraints.maxHeight * _imgHeight,
             ),
           ],
         ),

@@ -164,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Container(
           height: _bodySize * 0.7,
           child: _txList.isEmpty
-              ? NoTransactionImage()
+              ? NoTransactionImage(mediaQuery, isLandscape)
               : TransactionList(_txList, _deleteTransaction),
         ),
       ];
@@ -197,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
             : Container(
                 height: _bodySize * 0.9 - 10,
                 child: _txList.isEmpty
-                    ? NoTransactionImage()
+                    ? NoTransactionImage(mediaQuery, isLandscape)
                     : TransactionList(_txList, _deleteTransaction),
               ),
       ];
