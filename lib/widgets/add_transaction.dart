@@ -56,7 +56,7 @@ class _AddTransactionState extends State<AddTransaction> {
           top: 45,
           left: 25,
           right: 25,
-          bottom: MediaQuery.of(context).viewInsets.bottom + 45,
+          bottom: MediaQuery.of(context).viewInsets.bottom + 90,
         ),
         child: Column(
           children: <Widget>[
