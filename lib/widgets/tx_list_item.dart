@@ -97,6 +97,9 @@ class TxListItem extends StatelessWidget {
                           fontFamily: 'Quicksand',
                         ),
                       ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                       textColor: Theme.of(context).accentColor,
                       onPressed: () => _handler(_txItem.id),
                     )

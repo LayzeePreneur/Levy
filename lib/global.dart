@@ -9,11 +9,11 @@ InputDecoration addTxField(String fieldHintText) {
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(25),
-      borderSide: BorderSide(width: 0.9, color: Colors.grey[300]),
+      borderSide: BorderSide(width: 1.1, color: Colors.grey[350]),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(25),
-      borderSide: BorderSide(width: 0.9, color: Colors.grey[400]),
+      borderSide: BorderSide(width: 1.1, color: Colors.grey[400]),
     ),
     filled: true,
     fillColor: Colors.grey[200],

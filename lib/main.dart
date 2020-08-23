@@ -204,7 +204,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
       appBar: _appBar,
       body: Column(
         children: <Widget>[
