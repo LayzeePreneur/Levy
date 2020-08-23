@@ -18,6 +18,20 @@ class _AddTransactionState extends State<AddTransaction> {
   var _amountController = TextEditingController();
   DateTime _selectedDate;
 
+  void _startDatePicker(BuildContext context) {
+    showDatePicker(
+      context: context,
+      firstDate: DateTime(1970),
+      lastDate: DateTime.now(),
+      initialDate: DateTime.now(),
+    ).then((date) {
+      if (date == null)
+        return;
+      else
+        setState(() => _selectedDate = date);
+    });
+  }
+
   void _addTx() {
     var _enteredText = _titleController.text;
     var _enteredAmount = double.parse(_amountController.text);
@@ -36,15 +50,6 @@ class _AddTransactionState extends State<AddTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    void _startDatePicker() {
-      showDatePicker(
-        context: context,
-        firstDate: DateTime(1970),
-        lastDate: DateTime.now(),
-        initialDate: DateTime.now(),
-      ).then((date) => setState(() => _selectedDate = date));
-    }
-
     return SingleChildScrollView(
       child: Container(
         padding: EdgeInsets.only(
@@ -93,7 +98,7 @@ class _AddTransactionState extends State<AddTransaction> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  onPressed: _startDatePicker,
+                  onPressed: () => _startDatePicker(context),
                 ),
               ],
             ),
