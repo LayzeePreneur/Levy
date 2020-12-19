@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../models/expense.dart';
+import '../widgets/delete_tx_dialogue.dart';
 
 class TxListItem extends StatelessWidget {
   const TxListItem(this.txItem, this.handler);
@@ -12,27 +13,6 @@ class TxListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQuery = MediaQuery.of(context);
-
-    void openDialogue() {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Delete Transaction'),
-            actions: <Widget>[
-              FlatButton(
-                child: Text('Cancel'),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-              FlatButton(
-                child: Text('Delete'),
-                onPressed: () => handler(txItem.id, context),
-              ),
-            ],
-          );
-        },
-      );
-    }
 
     return Container(
       width: double.infinity,
@@ -121,13 +101,23 @@ class TxListItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       textColor: Theme.of(context).accentColor,
-                      onPressed: openDialogue,
+                      onPressed: () {
+                        DeleteTx(
+                          txItem.id,
+                          handler,
+                        ).openDialogue(context);
+                      },
                     )
                   : IconButton(
                       icon: const Icon(Icons.delete),
                       iconSize: 28,
                       color: Theme.of(context).accentColor,
-                      onPressed: openDialogue,
+                      onPressed: () {
+                        DeleteTx(
+                          txItem.id,
+                          handler,
+                        ).openDialogue(context);
+                      },
                     ),
             ],
           ),
