@@ -13,6 +13,27 @@ class TxListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final MediaQueryData mediaQuery = MediaQuery.of(context);
 
+    void openDialogue() {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Delete Transaction'),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Cancel'),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              FlatButton(
+                child: Text('Delete'),
+                onPressed: () => handler(txItem.id, context),
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return Container(
       width: double.infinity,
       child: Card(
@@ -100,13 +121,13 @@ class TxListItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       textColor: Theme.of(context).accentColor,
-                      onPressed: () => handler(txItem.id),
+                      onPressed: openDialogue,
                     )
                   : IconButton(
                       icon: const Icon(Icons.delete),
                       iconSize: 28,
                       color: Theme.of(context).accentColor,
-                      onPressed: () => handler(txItem.id),
+                      onPressed: openDialogue,
                     ),
             ],
           ),

@@ -94,11 +94,13 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Future<void> _deleteTransaction(int id) async {
+  Future<void> _deleteTransaction(int id, BuildContext context) async {
     Database db = await _getDatabase();
     db.rawDelete('DELETE FROM expenses WHERE id = ?', [id]);
 
     _loadTransactions();
+
+    Navigator.of(context).pop();
   }
 
   @override
