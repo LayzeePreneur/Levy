@@ -1,5 +1,5 @@
 name: personal_expenses
-description: A new Flutter project.
+description: An app for saving daily expenses for android and ios platform.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -38,12 +38,23 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_launcher_icons: ^0.7.5
+  # Launcher icon
+  flutter_launcher_icons: ^0.8.0
 
+  # Splash screen
+  flutter_native_splash: ^0.1.9
+
+# Launcher icon settings
 flutter_icons:
   image_path: "assets/icon.png"
   android: true
   ios: true
+
+# Splash screen settings
+flutter_native_splash:
+  image: assets/icon.png
+  color: "ffffff"
+  android_disable_fullscreen: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

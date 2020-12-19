@@ -1,6 +1,6 @@
-# personal_expenses
+# Personal Expenses
 
-A new Flutter project.
+An app for saving daily expenses for android and ios platform.
 
 ## Getting Started
 
