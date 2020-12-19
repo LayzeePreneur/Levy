@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-
 import 'package:intl/intl.dart';
 
 import '../models/expense.dart';
 
 class TxListItem extends StatelessWidget {
-  final Expense _txItem;
-  final Function _handler;
+  const TxListItem(this.txItem, this.handler);
 
-  const TxListItem(this._txItem, this._handler);
+  final Expense txItem;
+  final Function handler;
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData _mediaQuery = MediaQuery.of(context);
+    final MediaQueryData mediaQuery = MediaQuery.of(context);
 
     return Container(
       width: double.infinity,
@@ -50,7 +49,7 @@ class TxListItem extends StatelessWidget {
                       ),
                       child: FittedBox(
                         child: Text(
-                          '\$${_txItem.amount.toStringAsFixed(2)}',
+                          '\$${txItem.amount.toStringAsFixed(2)}',
                           style: const TextStyle(
                             color: Colors.white,
                             fontFamily: 'OpenSans',
@@ -65,13 +64,13 @@ class TxListItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            _txItem.title,
+                            txItem.title,
                             style: Theme.of(context).textTheme.headline5,
                             overflow: TextOverflow.ellipsis,
                           ),
                           const SizedBox(height: 5),
                           Text(
-                            DateFormat.yMMMEd().format(_txItem.date),
+                            DateFormat.yMMMEd().format(txItem.date),
                             style: TextStyle(
                               fontFamily: 'Quicksand',
                               fontSize: 16,
@@ -86,7 +85,7 @@ class TxListItem extends StatelessWidget {
                   ],
                 ),
               ),
-              _mediaQuery.size.width > 450
+              mediaQuery.size.width > 450
                   ? FlatButton.icon(
                       icon: const Icon(Icons.delete, size: 28),
                       label: Text(
@@ -101,13 +100,13 @@ class TxListItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       textColor: Theme.of(context).accentColor,
-                      onPressed: () => _handler(_txItem.id),
+                      onPressed: () => handler(txItem.id),
                     )
                   : IconButton(
                       icon: const Icon(Icons.delete),
                       iconSize: 28,
                       color: Theme.of(context).accentColor,
-                      onPressed: () => _handler(_txItem.id),
+                      onPressed: () => handler(txItem.id),
                     ),
             ],
           ),

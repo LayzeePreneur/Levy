@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import 'theme.dart';
 import 'models/expense.dart';
 import 'widgets/transaction_list.dart';
 import 'widgets/chart.dart';
@@ -18,53 +18,24 @@ class PersonalExpenses extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.grey[200],
-        primarySwatch: Colors.indigo,
-        accentColor: Colors.blueGrey,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        fontFamily: 'Quicksand',
-        appBarTheme: ThemeData.light().appBarTheme.copyWith(
-              textTheme: ThemeData.light().textTheme.copyWith(
-                    headline6: const TextStyle(
-                      fontFamily: 'OpenSans',
-                      fontSize: 20,
-                    ),
-                  ),
-            ),
-        textTheme: ThemeData.light().textTheme.copyWith(
-              headline4: TextStyle(
-                color: Colors.grey[800],
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
-              ),
-              headline5: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-              ),
-              headline6: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-      ),
+      theme: appTheme,
       home: HomeScreen(title: 'Personal Expenses'),
     );
   }
 }
 
 class HomeScreen extends StatefulWidget {
-  final String title;
-
   const HomeScreen({Key key, this.title}) : super(key: key);
+
+  final String title;
 
   @override
   State<StatefulWidget> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Expense> _txList = <Expense>[];
-  bool _showChart = false;
+  List<Expense> txList = <Expense>[];
+  bool showChart = false;
 
   Future<Database> _getDatabase() async {
     Database database = await openDatabase(
@@ -98,9 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _loadTransactions() async {
-    List<Expense> _getTxList = await _getTransactions();
+    List<Expense> getTxList = await _getTransactions();
 
-    setState(() => _txList = _getTxList);
+    setState(() => txList = getTxList);
   }
 
   Future<void> _addNewTx(String title, double amount, DateTime date) async {
@@ -138,10 +109,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData _mediaQuery = MediaQuery.of(context);
-    final bool _isLandscape = _mediaQuery.orientation == Orientation.landscape;
+    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final bool isLandscape = mediaQuery.orientation == Orientation.landscape;
 
-    AppBar _appBar = AppBar(
+    AppBar appBar = AppBar(
       title: Text(widget.title),
       actions: <Widget>[
         IconButton(
@@ -151,21 +122,21 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     );
 
-    double _bodySize = _mediaQuery.size.height -
-        _appBar.preferredSize.height -
-        _mediaQuery.padding.top;
+    double bodySize = mediaQuery.size.height -
+        appBar.preferredSize.height -
+        mediaQuery.padding.top;
 
     List<Widget> _buildPortrait() {
       return <Widget>[
         Container(
-          height: _bodySize * 0.3,
-          child: Chart(_txList),
+          height: bodySize * 0.3,
+          child: Chart(txList),
         ),
         Container(
-          height: _bodySize * 0.7,
-          child: _txList.isEmpty
-              ? NoTransactionImage(_isLandscape)
-              : TransactionList(_txList, _deleteTransaction),
+          height: bodySize * 0.7,
+          child: txList.isEmpty
+              ? NoTransactionImage(isLandscape)
+              : TransactionList(txList, _deleteTransaction),
         ),
       ];
     }
@@ -173,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
     List<Widget> _buildLandscape() {
       return <Widget>[
         Container(
-          height: _bodySize * 0.1 + 10,
+          height: bodySize * 0.1 + 10,
           padding: const EdgeInsets.only(top: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -183,32 +154,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: Theme.of(context).textTheme.headline5,
               ),
               Switch.adaptive(
-                value: _showChart,
-                onChanged: (value) => setState(() => _showChart = value),
+                value: showChart,
+                onChanged: (value) => setState(() => showChart = value),
               ),
             ],
           ),
         ),
-        _showChart
+        showChart
             ? Container(
-                height: _bodySize * 0.8 - 10,
-                child: Chart(_txList),
+                height: bodySize * 0.8 - 10,
+                child: Chart(txList),
               )
             : Container(
-                height: _bodySize * 0.9 - 10,
-                child: _txList.isEmpty
-                    ? NoTransactionImage(_isLandscape)
-                    : TransactionList(_txList, _deleteTransaction),
+                height: bodySize * 0.9 - 10,
+                child: txList.isEmpty
+                    ? NoTransactionImage(isLandscape)
+                    : TransactionList(txList, _deleteTransaction),
               ),
       ];
     }
 
     return Scaffold(
-      appBar: _appBar,
+      appBar: appBar,
       body: Column(
         children: <Widget>[
-          if (!_isLandscape) ..._buildPortrait(),
-          if (_isLandscape) ..._buildLandscape(),
+          if (!isLandscape) ..._buildPortrait(),
+          if (isLandscape) ..._buildLandscape(),
         ],
       ),
     );

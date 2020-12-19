@@ -3,29 +3,29 @@ import 'package:flutter/material.dart';
 import '../global.dart';
 
 class ChartBar extends StatelessWidget {
-  final Map<String, Object> _txDetails;
-  final double _highestSpending;
+  const ChartBar(this.txDetails, this.highestSpending);
 
-  const ChartBar(this._txDetails, this._highestSpending);
+  final Map<String, Object> txDetails;
+  final double highestSpending;
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData _mediaQuery = MediaQuery.of(context);
-    final bool _isLandscape = _mediaQuery.orientation == Orientation.landscape;
+    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final bool isLandscape = mediaQuery.orientation == Orientation.landscape;
 
     return LayoutBuilder(builder: (context, constraints) {
       return Column(
         children: <Widget>[
           Container(
             height: constraints.maxHeight * 0.15,
-            child: _isLandscape
+            child: isLandscape
                 ? Text(
-                    '\$${_txDetails['amount']}',
+                    '\$${txDetails['amount']}',
                     style: chartbarFontLandscape(17),
                   )
                 : FittedBox(
                     child: Text(
-                      '\$${_txDetails['amount']}',
+                      '\$${txDetails['amount']}',
                       style: chartbarFontPortrait(),
                     ),
                   ),
@@ -45,8 +45,8 @@ class ChartBar extends StatelessWidget {
                   ),
                 ),
                 FractionallySizedBox(
-                  heightFactor: _highestSpending > 0
-                      ? double.parse(_txDetails['amount']) / _highestSpending
+                  heightFactor: highestSpending > 0
+                      ? double.parse(txDetails['amount']) / highestSpending
                       : 0,
                   child: Container(
                     decoration: BoxDecoration(
@@ -61,14 +61,14 @@ class ChartBar extends StatelessWidget {
           SizedBox(height: constraints.maxHeight * 0.05),
           Container(
             height: constraints.maxHeight * 0.15,
-            child: _isLandscape
+            child: isLandscape
                 ? Text(
-                    _txDetails['weekDay'],
+                    txDetails['weekDay'],
                     style: chartbarFontLandscape(16),
                   )
                 : FittedBox(
                     child: Text(
-                      _txDetails['weekDay'],
+                      txDetails['weekDay'],
                       style: chartbarFontPortrait(),
                     ),
                   ),

@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
-
 import 'package:intl/intl.dart';
 
 import '../models/expense.dart';
 import 'chartbar.dart';
 
 class Chart extends StatelessWidget {
-  final List<Expense> _txList;
+  const Chart(this.txList);
 
-  const Chart(this._txList);
+  final List<Expense> txList;
 
-  List<Expense> get _recentTransaction {
+  List<Expense> get recentTransaction {
     DateTime sevenDaysAgo = DateTime.now().subtract(Duration(days: 7));
 
-    return _txList.where((Expense tx) {
+    return txList.where((Expense tx) {
       return tx.date.isAfter(sevenDaysAgo);
     }).toList();
   }
 
-  List<Map<String, Object>> get _groupedTransaction {
+  List<Map<String, Object>> get groupedTransaction {
     return List.generate(7, (int index) {
       DateTime date = DateTime.now().subtract(Duration(days: index));
       double amount = 0;
 
-      _recentTransaction.forEach((Expense tx) {
+      recentTransaction.forEach((Expense tx) {
         if (date.day == tx.date.day) amount += tx.amount;
       });
 
@@ -34,10 +33,10 @@ class Chart extends StatelessWidget {
     }).reversed.toList();
   }
 
-  double get _highestSpending {
+  double get highestSpending {
     double amount = 0;
 
-    _groupedTransaction.forEach((tx) {
+    groupedTransaction.forEach((tx) {
       if (double.parse(tx['amount']) > amount) {
         amount = double.parse(tx['amount']);
       }
@@ -57,7 +56,7 @@ class Chart extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: List.generate(7, (index) {
               return Expanded(
-                child: ChartBar(_groupedTransaction[index], _highestSpending),
+                child: ChartBar(groupedTransaction[index], highestSpending),
               );
             }),
           ),

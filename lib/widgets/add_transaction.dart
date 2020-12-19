@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
-
 import 'package:intl/intl.dart';
 
 import '../global.dart';
 
 class AddTransaction extends StatefulWidget {
-  final Function handler;
-
   const AddTransaction(this.handler);
+
+  final Function handler;
 
   @override
   _AddTransactionState createState() => _AddTransactionState();
 }
 
 class _AddTransactionState extends State<AddTransaction> {
-  var _titleController = TextEditingController();
-  var _amountController = TextEditingController();
-  DateTime _selectedDate;
+  var titleController = TextEditingController();
+  var amountController = TextEditingController();
+  DateTime selectedDate;
 
-  void _startDatePicker(BuildContext context) {
+  void startDatePicker(BuildContext context) {
     showDatePicker(
       context: context,
       firstDate: DateTime(1970),
@@ -28,22 +27,22 @@ class _AddTransactionState extends State<AddTransaction> {
       if (date == null)
         return;
       else
-        setState(() => _selectedDate = date);
+        setState(() => selectedDate = date);
     });
   }
 
-  void _addTx() {
-    var _enteredText = _titleController.text;
-    var _enteredAmount = double.parse(_amountController.text);
+  void addTx() {
+    var enteredText = titleController.text;
+    var enteredAmount = double.parse(amountController.text);
 
-    if (_enteredText.isEmpty ||
-        _enteredAmount.isNaN ||
-        _enteredAmount <= 0 ||
-        _selectedDate == null) {
+    if (enteredText.isEmpty ||
+        enteredAmount.isNaN ||
+        enteredAmount <= 0 ||
+        selectedDate == null) {
       return;
     }
 
-    widget.handler(_enteredText, _enteredAmount, _selectedDate);
+    widget.handler(enteredText, enteredAmount, selectedDate);
 
     Navigator.of(context).pop();
   }
@@ -62,24 +61,24 @@ class _AddTransactionState extends State<AddTransaction> {
           children: <Widget>[
             TextField(
               decoration: addTxField('Title'),
-              controller: _titleController,
-              onSubmitted: (_) => _addTx(),
+              controller: titleController,
+              onSubmitted: (_) => addTx(),
             ),
             const SizedBox(height: 20),
             TextField(
               decoration: addTxField('Amount'),
               keyboardType: TextInputType.number,
-              controller: _amountController,
-              onSubmitted: (_) => _addTx(),
+              controller: amountController,
+              onSubmitted: (_) => addTx(),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Expanded(
                   child: Text(
-                    _selectedDate == null
+                    selectedDate == null
                         ? 'No Date Chosen'
-                        : 'Picked Date: ${DateFormat('dd/MM/yy').format(_selectedDate)}',
+                        : 'Picked Date: ${DateFormat('dd/MM/yy').format(selectedDate)}',
                     style: Theme.of(context).textTheme.headline6,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -98,7 +97,7 @@ class _AddTransactionState extends State<AddTransaction> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  onPressed: () => _startDatePicker(context),
+                  onPressed: () => startDatePicker(context),
                 ),
               ],
             ),
@@ -123,7 +122,7 @@ class _AddTransactionState extends State<AddTransaction> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
-                onPressed: _addTx,
+                onPressed: addTx,
               ),
             ),
           ],
