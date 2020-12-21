@@ -52,10 +52,10 @@ class _AddTransactionState extends State<AddTransaction> {
     return SingleChildScrollView(
       child: Container(
         padding: EdgeInsets.only(
-          top: 40,
+          top: 30,
           left: 25,
           right: 25,
-          bottom: MediaQuery.of(context).viewInsets.bottom + 90,
+          bottom: MediaQuery.of(context).viewInsets.bottom + 60,
         ),
         child: Column(
           children: <Widget>[
