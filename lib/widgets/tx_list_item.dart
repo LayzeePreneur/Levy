@@ -19,19 +19,22 @@ class TxListItem extends StatelessWidget {
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(40),
-          side: BorderSide(width: 1, color: Colors.grey[300]),
+          side: BorderSide(
+            width: 1,
+            color: Colors.grey[300].withOpacity(0.7),
+          ),
         ),
         margin: const EdgeInsets.symmetric(
-          vertical: 5,
+          vertical: 3,
           horizontal: 10,
         ),
         elevation: 0,
         child: Padding(
           padding: const EdgeInsets.only(
-            top: 10,
-            bottom: 10,
-            left: 12,
-            right: 10,
+            top: 8,
+            bottom: 8,
+            left: 8,
+            right: 6,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,8 +43,8 @@ class TxListItem extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Container(
-                      width: 62,
-                      height: 62,
+                      width: 52,
+                      height: 52,
                       padding: const EdgeInsets.all(5),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -69,12 +72,12 @@ class TxListItem extends StatelessWidget {
                             style: Theme.of(context).textTheme.headline5,
                             overflow: TextOverflow.ellipsis,
                           ),
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 3),
                           Text(
                             DateFormat.yMMMEd().format(txItem.date),
                             style: TextStyle(
                               fontFamily: 'Quicksand',
-                              fontSize: 16,
+                              fontSize: 13,
                               color: Colors.grey[600],
                               fontWeight: FontWeight.w700,
                             ),
@@ -88,11 +91,11 @@ class TxListItem extends StatelessWidget {
               ),
               mediaQuery.size.width > 450
                   ? FlatButton.icon(
-                      icon: const Icon(Icons.delete, size: 28),
+                      icon: const Icon(Icons.delete, size: 22),
                       label: Text(
                         'Delete',
                         style: const TextStyle(
-                          fontSize: 16,
+                          fontSize: 15,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Quicksand',
                         ),
@@ -110,7 +113,7 @@ class TxListItem extends StatelessWidget {
                     )
                   : IconButton(
                       icon: const Icon(Icons.delete),
-                      iconSize: 28,
+                      iconSize: 22,
                       color: Theme.of(context).accentColor,
                       onPressed: () {
                         DeleteTx(

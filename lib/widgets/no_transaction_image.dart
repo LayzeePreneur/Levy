@@ -16,7 +16,7 @@ class NoTransactionImage extends StatelessWidget {
           children: <Widget>[
             Text(
               'No Transaction Added Yet!',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headline3,
             ),
             const SizedBox(height: 20),
             Image.asset(

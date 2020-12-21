@@ -129,11 +129,11 @@ class _HomeScreenState extends State<HomeScreen> {
     List<Widget> _buildPortrait() {
       return <Widget>[
         Container(
-          height: bodySize * 0.3,
+          height: bodySize * 0.3 - 30,
           child: Chart(txList),
         ),
         Container(
-          height: bodySize * 0.7,
+          height: bodySize * 0.7 + 30,
           child: txList.isEmpty
               ? NoTransactionImage(isLandscape)
               : TransactionList(txList, _deleteTransaction),
@@ -151,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
               Text(
                 'Show Chart',
-                style: Theme.of(context).textTheme.headline5,
+                style: Theme.of(context).textTheme.headline4,
               ),
               Switch.adaptive(
                 value: showChart,

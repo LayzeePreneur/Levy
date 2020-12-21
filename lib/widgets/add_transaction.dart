@@ -52,7 +52,7 @@ class _AddTransactionState extends State<AddTransaction> {
     return SingleChildScrollView(
       child: Container(
         padding: EdgeInsets.only(
-          top: 45,
+          top: 40,
           left: 25,
           right: 25,
           bottom: MediaQuery.of(context).viewInsets.bottom + 90,
@@ -87,7 +87,7 @@ class _AddTransactionState extends State<AddTransaction> {
                   child: Text(
                     'Choose Date',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 15,
                       fontWeight: FontWeight.w900,
                       fontFamily: 'Quicksand',
                       color: Theme.of(context).primaryColor,
@@ -107,7 +107,7 @@ class _AddTransactionState extends State<AddTransaction> {
                 child: const Text(
                   'Add Transaction',
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 15,
                     fontFamily: 'Quicksand',
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0.5,
@@ -116,8 +116,8 @@ class _AddTransactionState extends State<AddTransaction> {
                 color: Theme.of(context).primaryColor,
                 textColor: Colors.white,
                 padding: const EdgeInsets.symmetric(
-                  vertical: 12,
-                  horizontal: 15,
+                  vertical: 10,
+                  horizontal: 13,
                 ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),

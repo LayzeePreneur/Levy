@@ -10,22 +10,26 @@ ThemeData get appTheme => ThemeData(
             textTheme: ThemeData.light().textTheme.copyWith(
                   headline6: const TextStyle(
                     fontFamily: 'OpenSans',
-                    fontSize: 20,
+                    fontSize: 19,
                   ),
                 ),
           ),
       textTheme: ThemeData.light().textTheme.copyWith(
-            headline4: TextStyle(
+            headline3: TextStyle(
               color: Colors.grey[800],
-              fontSize: 20,
+              fontSize: 19,
               fontWeight: FontWeight.w900,
             ),
-            headline5: const TextStyle(
+            headline4: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
             ),
-            headline6: const TextStyle(
+            headline5: const TextStyle(
               fontSize: 16,
+              fontWeight: FontWeight.w700,
+            ),
+            headline6: const TextStyle(
+              fontSize: 15,
               fontWeight: FontWeight.w600,
             ),
           ),

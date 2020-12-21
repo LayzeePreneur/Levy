@@ -21,7 +21,7 @@ class ChartBar extends StatelessWidget {
             child: isLandscape
                 ? Text(
                     '\$${txDetails['amount']}',
-                    style: chartbarFontLandscape(17),
+                    style: chartbarFontLandscape(15),
                   )
                 : FittedBox(
                     child: Text(
@@ -32,7 +32,7 @@ class ChartBar extends StatelessWidget {
           ),
           SizedBox(height: constraints.maxHeight * 0.05),
           Container(
-            width: 12,
+            width: 10,
             height: constraints.maxHeight * 0.6,
             child: Stack(
               alignment: Alignment.bottomCenter,
@@ -40,8 +40,8 @@ class ChartBar extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    border: Border.all(color: Colors.grey[350]),
-                    color: Colors.grey[200],
+                    border: Border.all(color: Colors.grey[200]),
+                    color: Colors.grey[100],
                   ),
                 ),
                 FractionallySizedBox(
@@ -64,7 +64,7 @@ class ChartBar extends StatelessWidget {
             child: isLandscape
                 ? Text(
                     txDetails['weekDay'],
-                    style: chartbarFontLandscape(16),
+                    style: chartbarFontLandscape(14),
                   )
                 : FittedBox(
                     child: Text(

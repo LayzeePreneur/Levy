@@ -13,7 +13,7 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-        padding: const EdgeInsets.only(bottom: 5),
+        padding: const EdgeInsets.only(bottom: 3),
         itemCount: txList.length,
         itemBuilder: (BuildContext context, int index) {
           return TxListItem(txList[index], deleteTransaction);
