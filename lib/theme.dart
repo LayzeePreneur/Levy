@@ -13,6 +13,7 @@ ThemeData get appTheme => ThemeData(
                     fontSize: 19,
                   ),
                 ),
+            brightness: Brightness.dark,
           ),
       textTheme: ThemeData.light().textTheme.copyWith(
             headline3: TextStyle(
