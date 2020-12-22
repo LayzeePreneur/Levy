@@ -18,11 +18,11 @@ ThemeData get appTheme => ThemeData(
             headline3: TextStyle(
               color: Colors.grey[800],
               fontSize: 19,
-              fontWeight: FontWeight.w900,
+              fontWeight: FontWeight.w800,
             ),
             headline4: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
+              fontSize: 17,
+              fontWeight: FontWeight.w800,
             ),
             headline5: const TextStyle(
               fontSize: 16,
