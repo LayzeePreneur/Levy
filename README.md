@@ -2,6 +2,8 @@
 
 A simple app for saving daily expenses built with flutter for android and ios devices.
 
+<img src="screenshots/screenshot.png">
+
 <a href="https://drive.google.com/file/d/1yFQ0ne-uZnVGWa4-omEwpYT20W8gTaFm/view?usp=sharing"><img src="https://boostapk.com/wp-content/uploads/2020/08/fall-guys-android.png" width=200></a>
 
 ### Support this project
