@@ -8,7 +8,7 @@ A simple app for saving daily expenses built with flutter for android and ios de
 
 ### Support this project
 
-[![GitHub stars](https://img.shields.io/github/stars/Rezuanul-Islam-Fahim/personal_expenses.svg?style=social&label=Star)](https://github.com/Rezuanul-Islam-Fahim/personal_expenses) [![GitHub forks](https://img.shields.io/github/forks/Rezuanul-Islam-Fahim/personal_expenses.svg?style=social&label=Fork)](https://github.com/Rezuanul-Islam-Fahim/personal_expenses/fork) [![GitHub watchers](https://img.shields.io/github/watchers/Rezuanul-Islam-Fahim/personal_expenses.svg?style=social&label=Watch)](https://github.com/Rezuanul-Islam-Fahim/personal_expenses) [![License](https://img.shields.io/github/license/Rezuanul-Islam-Fahim/personal_expenses)](https://github.com/Rezuanul-Islam-Fahim/personal_expenses/blob/master/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/rezuanul-islam-fahim/personal_expenses?style=social)](https://github.com/Rezuanul-Islam-Fahim/personal_expenses/stargazers) [![GitHub forks](https://img.shields.io/github/forks/rezuanul-islam-fahim/personal_expenses?style=social)](https://github.com/Rezuanul-Islam-Fahim/personal_expenses/network/members) [![GitHub watchers](https://img.shields.io/github/watchers/rezuanul-islam-fahim/personal_expenses?style=social)](https://github.com/Rezuanul-Islam-Fahim/personal_expenses/watchers) [![License](https://img.shields.io/github/license/rezuanul-islam-fahim/personal_expenses)](https://github.com/Rezuanul-Islam-Fahim/personal_expenses/blob/master/LICENSE)
 
 ## Screenshots
 
