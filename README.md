@@ -2,7 +2,7 @@
 # Levy
 ### Personal Expense Tracker
 
-<a href="[page.html](https://play.google.com/store/apps/details?id=com.teqbot.levy)"><img src="[https://github.com/LayzeePreneur/archives/blob/master/Levy/banner.png](https://github.com/LayzeePreneur/archives/blob/master/Levy/banner.png)"></a>
+<a href="[page.html](https://play.google.com/store/apps/details?id=com.teqbot.levy)"><img src="https://github.com/LayzeePreneur/archives/blob/master/Levy/banner.png"></a>
 
 
 <p align="center">
