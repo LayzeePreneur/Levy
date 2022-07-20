@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ThemeData get appTheme => ThemeData(
       scaffoldBackgroundColor: Colors.grey[200],
-      primarySwatch: Colors.indigo,
+      primarySwatch: Colors.purple,
       accentColor: Colors.blueGrey,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       fontFamily: 'Quicksand',

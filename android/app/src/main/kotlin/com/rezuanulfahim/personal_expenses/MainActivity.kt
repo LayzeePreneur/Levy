@@ -1,4 +1,4 @@
-package com.rezuanulfahim.personal_expenses
+package com.teqbot.levy
 
 import io.flutter.embedding.android.FlutterActivity
 

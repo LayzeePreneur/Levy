@@ -20,12 +20,12 @@ class ChartBar extends StatelessWidget {
             height: constraints.maxHeight * 0.15,
             child: isLandscape
                 ? Text(
-                    '\$${txDetails['amount']}',
+                    '₹${txDetails['amount']}',
                     style: chartbarFontLandscape(15),
                   )
                 : FittedBox(
                     child: Text(
-                      '\$${txDetails['amount']}',
+                      '₹${txDetails['amount']}',
                       style: chartbarFontPortrait(),
                     ),
                   ),
