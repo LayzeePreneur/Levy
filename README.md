@@ -12,3 +12,12 @@ Personal Expense Tracker
  "> <img height="500px" src="![Screenshot_1658358693](https://user-images.githubusercontent.com/87197237/180099862-dc4100f2-3dfe-4697-8b66-f528d4840466.png)
  ">
 
+## Features
+- Save daily expenses and spendings
+- Show spending chart for recent 7 days
+- Show alert dialogue when deleting expense
+- Landscape mode support
+- Cross platform support
+
+## Source
+ Developed while following Academind Flutter Course
