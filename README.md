@@ -13,11 +13,8 @@
 <img height="500px" src="https://github.com/LayzeePreneur/archives/blob/master/Levy/Screenshot_1658358622.png">      <img height="500px" src="https://github.com/LayzeePreneur/archives/blob/master/Levy/Screenshot_1658358642.png">      <img height="500px" src="https://github.com/LayzeePreneur/archives/blob/master/Levy/Screenshot_1658358688.png">      <img height="500px" src="https://github.com/LayzeePreneur/archives/blob/master/Levy/Screenshot_1658358693.png">
 
 ## Features
-- Save daily expenses and spendings
-- Show spending chart for recent 7 days
-- Show alert dialogue when deleting expense
-- Landscape mode support
-- Cross platform support
+- Save daily expenses with date and name
+- Spending chart for recent 7 days
 
 ## Source
 Academind Flutter Course
