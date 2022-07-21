@@ -20,4 +20,4 @@
 - Cross platform support
 
 ## Source
- Developed while following Academind Flutter Course
+Academind Flutter Course
