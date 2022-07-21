@@ -4,8 +4,7 @@
 
 <a href="[page.html](https://play.google.com/store/apps/details?id=com.teqbot.levy)"><img src="https://github.com/LayzeePreneur/archives/blob/master/Levy/banner.png"></a>
 
-<p align="center">
-<h3>Install from Google Play Store</h3.
+<p align="center"><h3>Install from Google Play Store </h3>
 <a href="https://play.google.com/store/apps/details?id=com.teqbot.levy"><img src="https://boostapk.com/wp-content/uploads/2020/08/fall-guys-android.png" width=200></a>
 </p>
 
