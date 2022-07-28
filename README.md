@@ -14,7 +14,7 @@
 
 ## Features
 - Save daily expenses with date and name
-- Spending chart for recent 7 days
+- Spending chart for last 7 days
 
 ## Source
 Academind Flutter Course
